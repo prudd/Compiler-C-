@@ -1,0 +1,150 @@
+Program
+	Variable Declartion(int x[10])
+	Function Declaration(int minloc)
+	Parameters
+		int a[]
+		int low
+		int high
+	Body
+		CompoundStatment
+			Variable Declartion(int i)
+			Variable Declartion(int x)
+			Variable Declartion(int k)
+			ExpressionStatement
+				AssignmentExpression
+					VarExpression
+						Variable(k)
+					VarExpression
+						Variable(low)
+			ExpressionStatement
+				AssignmentExpression
+					VarExpression
+						Variable(x)
+					VarExpression
+						Variable(a)
+							VarExpression
+								Variable(low)
+			ExpressionStatement
+				AssignmentExpression
+					VarExpression
+						Variable(i)
+					BinaryExpression
+						VarExpression
+							Variable(low)
+						+
+						NumExpression(1)
+			IterationStatment
+				Conditional
+					BinaryExpression
+						VarExpression
+							Variable(i)
+						<
+						VarExpression
+							Variable(high)
+				Body
+					CompoundStatment
+						SelectionStatment
+							Conditional
+								BinaryExpression
+									VarExpression
+										Variable(a)
+											VarExpression
+												Variable(i)
+									<
+									VarExpression
+										Variable(x)
+							ifBody
+								CompoundStatment
+									ExpressionStatement
+										AssignmentExpression
+											VarExpression
+												Variable(x)
+											VarExpression
+												Variable(a)
+													VarExpression
+														Variable(i)
+									ExpressionStatement
+										AssignmentExpression
+											VarExpression
+												Variable(k)
+											VarExpression
+												Variable(i)
+			ReturnStatement
+				VarExpression
+					Variable(k)
+	Function Declaration(void sort)
+	Parameters
+		int a[]
+		int low
+		int high
+	Body
+		CompoundStatment
+			Variable Declartion(int i)
+			Variable Declartion(int k)
+			ExpressionStatement
+				AssignmentExpression
+					VarExpression
+						Variable(i)
+					VarExpression
+						Variable(low)
+			IterationStatment
+				Conditional
+					BinaryExpression
+						VarExpression
+							Variable(i)
+						<
+						BinaryExpression
+							VarExpression
+								Variable(high)
+							-
+							NumExpression(1)
+				Body
+					CompoundStatment
+						Variable Declartion(int t)
+						ExpressionStatement
+							AssignmentExpression
+								VarExpression
+									Variable(k)
+								CallExpression(minloc)
+									Arguments
+								VarExpression
+									Variable(a)
+								VarExpression
+									Variable(i)
+								VarExpression
+									Variable(high)
+						ExpressionStatement
+							AssignmentExpression
+								VarExpression
+									Variable(t)
+								VarExpression
+									Variable(a)
+										VarExpression
+											Variable(k)
+						ExpressionStatement
+							AssignmentExpression
+								VarExpression
+									Variable(a)
+										VarExpression
+											Variable(k)
+								VarExpression
+									Variable(a)
+										VarExpression
+											Variable(i)
+						ExpressionStatement
+							AssignmentExpression
+								VarExpression
+									Variable(a)
+										VarExpression
+											Variable(i)
+								VarExpression
+									Variable(t)
+						ExpressionStatement
+							AssignmentExpression
+								VarExpression
+									Variable(i)
+								BinaryExpression
+									VarExpression
+										Variable(i)
+									+
+									NumExpression(1)
