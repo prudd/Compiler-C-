@@ -7,7 +7,7 @@ Compiler for C-
 To Do
 ==========
 
-Parse AST
+
 
 Create CodeGen interface and implement
 
@@ -21,3 +21,38 @@ Compiler interface
   
       calls parser and codegen
 
+Danny
+
+    CodeGen interface and CMinusCodeGen
+
+    SelectionStmt
+    
+    IterationStmt
+    
+    ReturnStmt
+    
+    ExprStmt
+    
+Peter
+
+    NumExp
+        
+    VarExp
+        
+    CallExp
+        
+    BinExp
+        
+    AssignExp
+    
+Paul
+
+    Parameter
+    
+    Program
+    
+    FunDecl
+    
+    VarDecl
+    
+    CompStmt
