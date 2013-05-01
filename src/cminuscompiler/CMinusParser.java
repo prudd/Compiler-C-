@@ -6,22 +6,46 @@ import java.text.ParseException;
 import java.util.LinkedList;
 
 /**
- *
+ * Parser implementation of the C-Minus language as outlined in "Compiler
+ * Construction: Principles and Practice" by Kenneth C. Louden.
+ * 
  * @author Paul Marshall
+ * @version 1.0
+ * Created: 14 Apr 2013
  */
 public class CMinusParser extends Parser {
 
     private CMinusScanner scanner;
     private Program program;
 
+    /**
+     * Returns the generated Program object after parsing.
+     * 
+     * @return Program object
+     */
+    @Override
     public Program getProgram() {
         return program;
     }
 
+    /**
+     * Sets the Program object.
+     * 
+     * @param newProgram 
+     */
+    @Override
     public void setProgram(Program newProgram) {
         this.program = newProgram;
         
     }
+    
+    /**
+     * Performs a parse and returns the generate Program object.
+     * 
+     * @return Program object
+     * @throws ParseException If an error has occurred during the parse.
+     */
+    @Override
     public Program parse() throws ParseException {
         setProgram(parseProgram());
         return program;
@@ -1114,6 +1138,12 @@ public class CMinusParser extends Parser {
         }
     }
 
+    /**
+     * Prints the generated parse tree.
+     * 
+     * @param source Input file names
+     */
+    @Override
     public void printTree(String source) {
         this.program.print(0);
         this.program.printFile(source, 0);
@@ -1124,6 +1154,13 @@ public class CMinusParser extends Parser {
         this.scanner = new CMinusScanner(source);
     }
 
+    /**
+     * Test code.
+     * 
+     * @param args
+     * @throws IOException
+     * @throws ParseException 
+     */
     public static void main(String[] args) throws IOException, ParseException {
         //String[] filename = {"ComprehensiveTest.c", "SelectionSort.c", "CrappyCode.c"};
         String[] filename = {"ComprehensiveTest.c", "SelectionSort.c"};
