@@ -1,7 +1,7 @@
 package compiler;
 
 import x64codegen.X64AssemblyGenerator;
-import parser.*;
+import cminuscompiler.*;
 import lowlevel.*;
 import java.util.*;
 import java.io.*;

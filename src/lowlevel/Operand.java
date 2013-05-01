@@ -118,7 +118,7 @@ public class Operand {
       return ("s");
     }
     else {
-      throw new parser.CodeGenerationException("Operand: invalid type");
+      throw new cminuscompiler.CodeGenerationException("Operand: invalid type");
     }
   }
     // prints an operand surrounded by parentheses
