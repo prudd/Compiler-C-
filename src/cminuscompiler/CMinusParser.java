@@ -9,7 +9,7 @@ import java.util.LinkedList;
  *
  * @author Paul Marshall
  */
-public class CMinusParser {
+public class CMinusParser extends Parser {
 
     private CMinusScanner scanner;
     private Program program;
