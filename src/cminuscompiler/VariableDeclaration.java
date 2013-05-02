@@ -2,8 +2,6 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import lowlevel.CodeItem;
-import lowlevel.Data;
 
 /**
  *
@@ -27,11 +25,6 @@ public class VariableDeclaration extends Declaration {
 
     public void setArraySize(int arraySize) {
         this.arraySize = arraySize;
-    }
-    
-    @Override
-    public CodeItem genCode(){
-        return new Data(Data.TYPE_INT, id);
     }
     
     @Override
@@ -71,7 +64,7 @@ public class VariableDeclaration extends Declaration {
             for (int i = 0; i < level; i++) {
                 bw.append("\t");
             }
-            bw.append("Variable Declartion(int " + id);
+            bw.append("VariableDeclaration(int " + id);
             
             if (this.arraySize > -1) {
                 bw.append("[" + this.arraySize + "])\n");
