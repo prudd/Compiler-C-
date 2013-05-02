@@ -23,7 +23,6 @@ public class ReturnStatement extends Statement {
     
     @Override
     public CodeItem genCode(){
-        return new Data();
     }
 
     @Override

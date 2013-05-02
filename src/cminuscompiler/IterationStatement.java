@@ -31,7 +31,6 @@ public class IterationStatement extends Statement {
     
     @Override
     public CodeItem genCode(){
-        return new Data();
     }
 
     @Override
