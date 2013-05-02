@@ -2,6 +2,8 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.BasicBlock;
+import lowlevel.CodeItem;
 
 /**
  *
@@ -34,6 +36,11 @@ public class SelectionStatement extends Statement {
 
     public void setElseStatement(Statement elseStatement) {
         this.elseStatement = elseStatement;
+    }
+    
+    @Override
+    public CodeItem genCode(BasicBlock currentBlock){
+        
     }
     
     @Override

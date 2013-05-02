@@ -59,7 +59,11 @@ public class FunctionDeclaration extends Declaration {
         Function func = new Function(type, id);
         func.createBlock0();
         func.setCurrBlock(func.getFirstBlock());
-        return compoundStatement.genCode();
+        
+        for(Parameter p : parameters){
+            
+        }
+        return compoundStatement.genCode(func.getCurrBlock());
     }
     
     @Override

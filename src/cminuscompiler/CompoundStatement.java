@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Data;
 
@@ -40,8 +41,8 @@ public class CompoundStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(){
-        
+    public CodeItem genCode(BasicBlock currentBlock){
+        return null;
     }
     
     @Override

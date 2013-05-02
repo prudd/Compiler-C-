@@ -2,6 +2,7 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 
 /**
@@ -21,7 +22,7 @@ public class ReturnStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(){
+    public CodeItem genCode(BasicBlock currentBlock){
         
     }
     
