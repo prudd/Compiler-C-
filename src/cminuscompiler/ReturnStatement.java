@@ -2,6 +2,8 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.CodeItem;
+import lowlevel.Data;
 
 /**
  *
@@ -17,6 +19,11 @@ public class ReturnStatement extends Statement {
 
     public void setExpression(Expression expression) {
         this.expression = expression;
+    }
+    
+    @Override
+    public CodeItem genCode(){
+        return new Data();
     }
 
     @Override

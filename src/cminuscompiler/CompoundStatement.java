@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.CodeItem;
+import lowlevel.Data;
 
 /**
  *
@@ -35,6 +37,11 @@ public class CompoundStatement extends Statement {
 
     public void setStatements(LinkedList<Statement> statements) {
         this.statements = statements;
+    }
+    
+    @Override
+    public CodeItem genCode(){
+        return new Data();
     }
     
     @Override

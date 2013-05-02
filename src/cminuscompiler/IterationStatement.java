@@ -2,6 +2,8 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.CodeItem;
+import lowlevel.Data;
 
 /**
  *
@@ -25,6 +27,11 @@ public class IterationStatement extends Statement {
 
     public void setStatement(Statement statement) {
         this.statement = statement;
+    }
+    
+    @Override
+    public CodeItem genCode(){
+        return new Data();
     }
 
     @Override

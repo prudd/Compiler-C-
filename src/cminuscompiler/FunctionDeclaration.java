@@ -4,14 +4,16 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.Data;
+import lowlevel.CodeItem;
+import lowlevel.Function;
 
 /**
  *
  * @author Paul Marshall
  */
 public class FunctionDeclaration extends Declaration {
-
-    private String type;
+    private int type;
     private String id;
     private LinkedList<Parameter> parameters = new LinkedList<>();
     private CompoundStatement compoundStatement;
@@ -28,11 +30,11 @@ public class FunctionDeclaration extends Declaration {
         this.parameters = parameters;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -50,6 +52,15 @@ public class FunctionDeclaration extends Declaration {
 
     public void setCompoundStatement(CompoundStatement compoundStatement) {
         this.compoundStatement = compoundStatement;
+    }
+    
+    @Override
+    public CodeItem genCode(){
+        Function func = new Function(type, id);
+        func.createBlock0();
+        func.setCurrBlock(func.getFirstBlock());
+        compoundStatement.genCode();
+        return new Data();
     }
 
     @Override
@@ -133,7 +144,7 @@ public class FunctionDeclaration extends Declaration {
         }
     }
 
-    public FunctionDeclaration(String type, String id, LinkedList<Parameter> parameters,
+    public FunctionDeclaration(int type, String id, LinkedList<Parameter> parameters,
             CompoundStatement compoundStatement) {
         this.type = type;
         this.id = id;
@@ -141,18 +152,18 @@ public class FunctionDeclaration extends Declaration {
         this.compoundStatement = compoundStatement;
     }
 
-    public FunctionDeclaration(String type, String id,
+    public FunctionDeclaration(int type, String id,
             CompoundStatement compoundStatement) {
         this.type = type;
         this.id = id;
         this.compoundStatement = compoundStatement;
     }
 
-    public FunctionDeclaration(String type, String id) {
+    public FunctionDeclaration(int type, String id) {
         this(type, id, null);
     }
 
     public FunctionDeclaration() {
-        this(null, null, null);
+        this(Data.TYPE_VOID, null, null);
     }
 }

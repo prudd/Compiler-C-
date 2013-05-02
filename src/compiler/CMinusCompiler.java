@@ -1,9 +1,9 @@
 package compiler;
 
-import x64codegen.X64AssemblyGenerator;
 import cminuscompiler.*;
 import lowlevel.*;
 import java.util.*;
+import java.text.ParseException;
 import java.io.*;
 import optimizer.*;
 import x86codegen.*;
@@ -21,11 +21,12 @@ public class CMinusCompiler implements Compiler {
     public static void setGenX64Code(boolean useX64) {
         genX64Code = useX64;
     }
+    
     public static boolean getGenX64Code() {
         return genX64Code;
     }
 
-    public void compile(String filePrefix) {
+    public void compile(String filePrefix) throws ParseException {
 
         String fileName = filePrefix + ".c";
         try {
@@ -34,7 +35,7 @@ public class CMinusCompiler implements Compiler {
             Program parseTree = myParser.parse();
             myParser.printTree(fileName);
 
-            CodeItem lowLevelCode = parseTree.genLLCode();
+            CodeItem lowLevelCode = parseTree.generateLLCode();
 
             fileName = filePrefix + ".ll";
             PrintWriter outFile =
@@ -67,19 +68,18 @@ public class CMinusCompiler implements Compiler {
             lowLevelCode.printLLCode(outFile);
             outFile.close();
 
-//    lowLevelCode.printLLCode(null);
-
+            //    lowLevelCode.printLLCode(null);
             // simply walks functions and finds in and out edges for each BasicBlock
             ControlFlowAnalysis cf = new ControlFlowAnalysis(lowLevelCode);
             cf.performAnalysis();
-//    cf.printAnalysis(null);
+            //    cf.printAnalysis(null);
 
             // performs DU analysis, annotating the function with the live range of
             // the value defined by each oper (some merging of opers which define
             // same virtual register is done)
-//    DefUseAnalysis du = new DefUseAnalysis(lowLevelCode);
-//    du.performAnalysis();
-//    du.printAnalysis();
+            //    DefUseAnalysis du = new DefUseAnalysis(lowLevelCode);
+            //    du.performAnalysis();
+            //    du.printAnalysis();
 
             LivenessAnalysis liveness = new LivenessAnalysis(lowLevelCode);
             liveness.performAnalysis();
@@ -123,10 +123,10 @@ public class CMinusCompiler implements Compiler {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         String filePrefix = "test5";
-        CMinusCompiler myCompiler = new CMinusCompiler();
-        myCompiler.setGenX64Code(true);
+        Compiler myCompiler = new CMinusCompiler();
+        setGenX64Code(true);
         myCompiler.compile(filePrefix);
     }
 }

@@ -2,6 +2,8 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.CodeItem;
+import lowlevel.Data;
 
 /**
  *
@@ -25,6 +27,11 @@ public class VariableDeclaration extends Declaration {
 
     public void setArraySize(int arraySize) {
         this.arraySize = arraySize;
+    }
+    
+    @Override
+    public CodeItem genCode(){
+        return new Data(Data.TYPE_INT, id);
     }
     
     @Override
@@ -58,7 +65,7 @@ public class VariableDeclaration extends Declaration {
         }
     }
     
-        @Override
+    @Override
     public void printASTFile(BufferedWriter bw, int level) {
         try{
             for (int i = 0; i < level; i++) {

@@ -6,6 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.CodeItem;
+import lowlevel.Data;
+import codegen.CMinusCodeGen;
+import codegen.CodeGen;
 
 /**
  *
@@ -32,6 +36,11 @@ public class Program {
         while (iterator.hasNext()) {
             iterator.next().print(level);
         }
+    }
+    
+    public CodeItem generateLLCode(){
+        CodeGen codeGenerator = new CMinusCodeGen(this);
+        return new Data();
     }
     
     public void printFile(String source, int level) {

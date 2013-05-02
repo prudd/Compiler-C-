@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.LinkedList;
+import lowlevel.Data;
 
 /**
  * Parser implementation of the C-Minus language as outlined in "Compiler
@@ -106,7 +107,7 @@ public class CMinusParser extends Parser {
                 match(Token.TokenType.ID_TOKEN);
                 decl = parseFunDecl();
                 ((FunctionDeclaration) decl).setId(id);
-                ((FunctionDeclaration) decl).setType("void");
+                ((FunctionDeclaration) decl).setType(Data.TYPE_INT);
                 break;
             //Not in the First Set
             default:
@@ -138,7 +139,7 @@ public class CMinusParser extends Parser {
             case LPAREN_TOKEN:
                 decl = parseFunDecl();
                 ((FunctionDeclaration) decl).setId(id);
-                ((FunctionDeclaration) decl).setType("int");
+                ((FunctionDeclaration) decl).setType(Data.TYPE_INT);
                 break;
             default:
                 String message = "Expected an INT_TOKEN, VOID_TOKEN. Got " + scanner.viewToken().toString() + " in parseDecl1";
