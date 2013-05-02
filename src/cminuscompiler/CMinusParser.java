@@ -14,31 +14,9 @@ import lowlevel.Data;
  * @version 1.0
  * Created: 14 Apr 2013
  */
-public class CMinusParser extends Parser {
-
+public class CMinusParser implements Parser {
     private CMinusScanner scanner;
     private Program program;
-
-    /**
-     * Returns the generated Program object after parsing.
-     * 
-     * @return Program object
-     */
-    @Override
-    public Program getProgram() {
-        return program;
-    }
-
-    /**
-     * Sets the Program object.
-     * 
-     * @param newProgram 
-     */
-    @Override
-    public void setProgram(Program newProgram) {
-        this.program = newProgram;
-        
-    }
     
     /**
      * Performs a parse and returns the generate Program object.
@@ -46,13 +24,8 @@ public class CMinusParser extends Parser {
      * @return Program object
      * @throws ParseException If an error has occurred during the parse.
      */
-    @Override
+ 
     public Program parse() throws ParseException {
-        setProgram(parseProgram());
-        return program;
-    }
-
-    private Program parseProgram() throws ParseException {
         Program program = new Program();
         switch (scanner.viewToken().getType()) {
             //First set INT_TOKEN, VOID_TOKEN        
@@ -61,6 +34,7 @@ public class CMinusParser extends Parser {
                 //Being parsing by parsing Decl-List
                 program.setDeclarationList(parseDeclList());
                 match(Token.TokenType.EOF_TOKEN);
+                this.program = program;
                 return program;
             default:
                 String message = "Expected an INT_TOKEN or VOID_TOKEN. Got " + scanner.viewToken().toString() + " in parseProgram";
@@ -1142,13 +1116,13 @@ public class CMinusParser extends Parser {
     /**
      * Prints the generated parse tree.
      * 
-     * @param source Input file names
+     * @param destination Input file names
      */
     @Override
-    public void printTree(String source) {
+    public void printTree(String destination) {
         this.program.print(0);
-        this.program.printFile(source, 0);
-        this.program.printASTFile(source, 0);
+        this.program.printFile(destination, 0);
+        this.program.printASTFile(destination, 0);
     }
 
     public CMinusParser(String source) throws FileNotFoundException, IOException {

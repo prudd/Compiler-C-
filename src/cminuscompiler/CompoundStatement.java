@@ -40,10 +40,6 @@ public class CompoundStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(){
-    }
-    
-    @Override
     public void print(int level) {
         Iterator<Declaration> declaration = this.declarations.iterator();
         Iterator<Statement> statement = this.statements.iterator();

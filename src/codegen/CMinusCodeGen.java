@@ -5,23 +5,83 @@ import lowlevel.CodeItem;
 import lowlevel.Data;
 import cminuscompiler.Declaration;
 import java.util.List;
+import java.util.Scanner;
 
 public class CMinusCodeGen implements CodeGen {
-    private Program parseTree;
+    private String astFileName;
     
-    public CMinusCodeGen(Program parseTree){
-        this.parseTree = parseTree;
+    public CMinusCodeGen(String astFileName){
+        this.astFileName = astFileName;
     }
     
-    public CodeItem generateCode(){
-        List<Declaration> declList = parseTree.getDeclarationList();
-        CodeItem currentItem = null;
-        for(int i = 0; i < declList.size(); i++){
-            currentItem = declList.get(i).genCode();
-            if(i > 0){
-                declList.get(i - 1).genCode().setNextItem(currentItem);
-            }
-        }
-        return currentItem;
+    public CodeItem generateLLCode(){
+        Scanner scan = new Scanner(astFileName);
+        String term = scan.next();
+        
+        return new Data();
+    }
+    
+    private CodeItem genCodeProgram(){
+        
+    }
+    
+    private CodeItem genCodeDeclaration(){
+        
+    }
+    
+    private CodeItem genCodeVariableDeclaration(){
+        
+    }
+    
+    private CodeItem genCodeFunctionDeclaration(){
+        
+    }
+    
+    private CodeItem genCodeCompoundStatement(){
+        
+    }
+    
+    private CodeItem genCodeVarStatement(){
+        
+    }
+    
+    private CodeItem genCodeExpressionStatement(){
+        
+    }
+    
+    private CodeItem genCodeReturnStatement(){
+        
+    }
+    
+    private CodeItem genCodeIterationStatement(){
+        
+    }
+    
+    private CodeItem genCodeSelectionStatement(){
+        
+    }
+    
+    private CodeItem genCodeExpression(){
+        
+    }
+    
+    private CodeItem genCodeBinaryExpression(){
+        
+    }
+    
+    private CodeItem genCodeCallExpression(){
+        
+    }
+    
+    private CodeItem genCodeAssignmentExpression(){
+        
+    }
+    
+    private CodeItem genCodeNumExpression(){
+        
+    }
+    
+    private CodeItem genCodeVarExpression(){
+        
     }
 }

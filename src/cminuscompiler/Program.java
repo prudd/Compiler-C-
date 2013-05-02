@@ -38,15 +38,10 @@ public class Program {
         }
     }
     
-    public CodeItem generateLLCode(){
-        CodeGen codeGenerator = new CMinusCodeGen(this);
-        return new Data();
-    }
-    
     public void printFile(String source, int level) {
         String delims = "[.]";
         String[] sourceParse = source.split(delims);
-        File file = new File(sourceParse[0] + "Out.c");
+        File file = new File(sourceParse[0] + ".c");
         FileWriter fw;
         try {
             fw = new FileWriter(file.getAbsoluteFile());
@@ -65,7 +60,7 @@ public class Program {
     public void printASTFile(String source, int level) {
         String delims = "[.]";
         String[] sourceParse = source.split(delims);
-        File file = new File(sourceParse[0] + "Out.ast");
+        File file = new File(sourceParse[0] + ".ast");
         FileWriter fw;
         try {
             fw = new FileWriter(file.getAbsoluteFile());

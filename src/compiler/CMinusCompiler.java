@@ -1,6 +1,8 @@
 package compiler;
 
 import cminuscompiler.*;
+import codegen.CMinusCodeGen;
+import codegen.CodeGen;
 import lowlevel.*;
 import java.util.*;
 import java.text.ParseException;
@@ -27,14 +29,14 @@ public class CMinusCompiler implements Compiler {
     }
 
     public void compile(String filePrefix) throws ParseException {
-
         String fileName = filePrefix + ".c";
         try {
             Parser myParser = new CMinusParser(fileName);
-
             Program parseTree = myParser.parse();
-            myParser.printTree(fileName);
+            myParser.printTree(filePrefix);
 
+            fileName = filePrefix + ".ast";
+            CodeGen codeGenerator = new CMinusCodeGen(fileName);
             CodeItem lowLevelCode = parseTree.generateLLCode();
 
             fileName = filePrefix + ".ll";

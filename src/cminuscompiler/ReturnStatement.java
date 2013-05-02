@@ -2,8 +2,6 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import lowlevel.CodeItem;
-import lowlevel.Data;
 
 /**
  *
@@ -21,10 +19,6 @@ public class ReturnStatement extends Statement {
         this.expression = expression;
     }
     
-    @Override
-    public CodeItem genCode(){
-    }
-
     @Override
     public void print(int level) {
         for (int i = 0; i < level; i++) {
