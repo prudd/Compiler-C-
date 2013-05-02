@@ -55,6 +55,11 @@ public class FunctionDeclaration extends Declaration {
     }
 
     @Override
+    public CodeItem genCode(){
+        return null;
+    }
+    
+    @Override
     public void print(int level) {
         Iterator<Parameter> iterator = this.parameters.iterator();
 

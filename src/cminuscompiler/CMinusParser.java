@@ -24,7 +24,7 @@ public class CMinusParser implements Parser {
      * @return Program object
      * @throws ParseException If an error has occurred during the parse.
      */
- 
+    @Override
     public Program parse() throws ParseException {
         Program program = new Program();
         switch (scanner.viewToken().getType()) {

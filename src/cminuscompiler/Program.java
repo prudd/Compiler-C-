@@ -38,6 +38,18 @@ public class Program {
         }
     }
     
+    @Override
+    public CodeItem genCode(){
+        CodeItem currentItem = null;
+        for(int i = 0; i < declarationList.size(); i++){
+            currentItem = declarationList.get(i).genCode();
+            if(i > 0){
+                declarationList.get(i - 1).genCode().setNextItem(currentItem);
+            }
+        }
+        return currentItem;
+    }
+    
     public void printFile(String source, int level) {
         String delims = "[.]";
         String[] sourceParse = source.split(delims);
@@ -76,5 +88,4 @@ public class Program {
             System.err.print("Error opening FileWriter in Program printASTFile");
         }
     }
-    
 }

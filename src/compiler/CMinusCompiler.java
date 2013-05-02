@@ -32,12 +32,11 @@ public class CMinusCompiler implements Compiler {
         String fileName = filePrefix + ".c";
         try {
             Parser myParser = new CMinusParser(fileName);
-            Program parseTree = myParser.parse();
+            Program ast = myParser.parse();
             myParser.printTree(filePrefix);
-
-            fileName = filePrefix + ".ast";
-            CodeGen codeGenerator = new CMinusCodeGen(fileName);
-            CodeItem lowLevelCode = parseTree.generateLLCode();
+            
+            CodeGen codeGenerator = new CMinusCodeGen(ast);
+            CodeItem lowLevelCode = codeGenerator.generateLLCode(ast);
 
             fileName = filePrefix + ".ll";
             PrintWriter outFile =
