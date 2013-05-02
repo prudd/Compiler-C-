@@ -28,6 +28,11 @@ public class IterationStatement extends Statement {
     public void setStatement(Statement statement) {
         this.statement = statement;
     }
+    
+    @Override
+    public CodeItem genCode(){
+        
+    }
 
     @Override
     public void print(int level) {

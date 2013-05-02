@@ -21,6 +21,11 @@ public class ExpressionStatement extends Statement {
     }
     
     @Override
+    public CodeItem genCode(){
+        
+    }
+    
+    @Override
     public void print(int level) {
         for (int i = 0; i < level; i++) {
             System.out.print("\t");
