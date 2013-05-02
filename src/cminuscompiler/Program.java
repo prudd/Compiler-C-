@@ -38,7 +38,6 @@ public class Program {
         }
     }
     
-    @Override
     public CodeItem genCode(){
         CodeItem currentItem = null;
         for(int i = 0; i < declarationList.size(); i++){

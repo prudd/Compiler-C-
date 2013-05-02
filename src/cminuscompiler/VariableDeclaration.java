@@ -31,7 +31,7 @@ public class VariableDeclaration extends Declaration {
     
     @Override
     public CodeItem genCode(){
-        return new Data();
+        return new Data(Data.TYPE_INT, id);
     }
     
     @Override

@@ -56,6 +56,9 @@ public class FunctionDeclaration extends Declaration {
 
     @Override
     public CodeItem genCode(){
+        Function func = new Function(type, id);
+        func.createBlock0();
+        func.setCurrBlock(func.getFirstBlock());
         return null;
     }
     
