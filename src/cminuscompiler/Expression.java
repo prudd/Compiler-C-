@@ -9,6 +9,7 @@ import lowlevel.BasicBlock;
  */
 abstract public class Expression {
     abstract public void genCode(BasicBlock compoundBlock);
+    abstract public int getRegNum();
     abstract public void print();
     abstract public void printFile(BufferedWriter bw);
     abstract public void printASTFile(BufferedWriter bw, int level);
