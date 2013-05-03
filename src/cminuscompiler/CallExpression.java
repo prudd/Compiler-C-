@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.Attribute;
 import lowlevel.BasicBlock;
 import lowlevel.Function;
 import lowlevel.Operand;
@@ -63,6 +64,7 @@ public class CallExpression extends Expression {
         // Add call operation:
         Operation callOp = new Operation(Operation.OperationType.CALL, currentBlock);
         callOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, id));
+        callOp.addAttribute(new Attribute("numParams", Integer.toString(args.size())));
         currentBlock.appendOper(callOp);
         
         //Assign retReg to a new register
