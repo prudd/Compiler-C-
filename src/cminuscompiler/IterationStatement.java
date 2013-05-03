@@ -44,7 +44,7 @@ public class IterationStatement extends Statement {
         BasicBlock postBlock = new BasicBlock(func);
 
         //genCode expr
-        expression.genCode(currentBlock);
+        expression.genCode(func);
 
         //branch to post
         Operation branchOp = new Operation(Operation.OperationType.BNE, currentBlock);

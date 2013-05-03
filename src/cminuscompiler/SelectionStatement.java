@@ -51,7 +51,7 @@ public class SelectionStatement extends Statement {
         BasicBlock postBlock = new BasicBlock(func);
         
         //genCode if-expr
-        expression.genCode(func.getCurrBlock());
+        expression.genCode(func);
         
         //make branch
         Operation branchOp = new Operation(Operation.OperationType.BNE, currentBlock);

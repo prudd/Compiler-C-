@@ -2,7 +2,7 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import lowlevel.BasicBlock;
+import lowlevel.Function;
 
 /**
  *
@@ -39,7 +39,7 @@ public class BinaryExpression extends Expression {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock){
+    public void genCode(Function func){
         
     }
     

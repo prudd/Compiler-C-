@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import lowlevel.BasicBlock;
+import lowlevel.Function;
 
 /**
  *
@@ -32,7 +32,7 @@ public class CallExpression extends Expression {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock){
+    public void genCode(Function func){
         
     }
     
