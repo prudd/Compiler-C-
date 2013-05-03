@@ -5,6 +5,7 @@ import java.io.IOException;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Data;
+import lowlevel.Function;
 
 /**
  *
@@ -22,7 +23,7 @@ public class ExpressionStatement extends Statement {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock){
+    public void genCode(BasicBlock currentBlock, Function func){
         
     }
     

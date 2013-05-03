@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
+import lowlevel.Function;
 
 /**
  *
@@ -39,7 +40,7 @@ public class SelectionStatement extends Statement {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock){
+    public void genCode(BasicBlock currentBlock, Function func){
         
     }
     

@@ -69,7 +69,8 @@ public class FunctionDeclaration extends Declaration {
 
         for (Parameter p : parameters) {
         }
-        return compoundStatement.genCode(func.getCurrBlock());
+        compoundStatement.genCode(func.getCurrBlock(), func);
+        return func;
     }
 
     @Override
