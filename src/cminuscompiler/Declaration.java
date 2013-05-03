@@ -2,6 +2,7 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import lowlevel.CodeItem;
+import lowlevel.Function;
 
 /**
  *

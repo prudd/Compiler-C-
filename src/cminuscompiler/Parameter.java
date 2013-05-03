@@ -33,7 +33,7 @@ public class Parameter {
     }
     
     public void genCode(Function func){
-        CMinusCompiler.globalHash.put(id, CMinusCompiler.globalHash.size());
+        func.getTable().put(id, func.getTable().size());
         if(func.getfirstParam() == null){
             func.setFirstParam(new FuncParam(Data.TYPE_INT, id));
         }

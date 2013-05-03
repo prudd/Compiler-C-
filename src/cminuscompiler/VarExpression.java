@@ -31,7 +31,7 @@ class VarExpression extends Expression {
     
     @Override
     public void genCode(Function func){
-        tempReg = CMinusCompiler.globalHash.get(id);
+        tempReg = (Integer)(func.getTable().get(id));
     }
     
     @Override

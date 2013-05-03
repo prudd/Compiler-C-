@@ -23,9 +23,7 @@ public class NumExpression extends Expression {
     
     @Override
     public void genCode(Function func){
-        HashMap symbolTable = CMinusCompiler.globalHash;
-        tempReg = symbolTable.size();
-        symbolTable.put(tempReg, tempReg);
+        func.getTable().put(tempReg, tempReg);
     }
     
     @Override

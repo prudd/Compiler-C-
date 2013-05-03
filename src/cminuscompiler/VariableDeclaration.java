@@ -32,7 +32,7 @@ public class VariableDeclaration extends Declaration {
     }
     
     @Override
-    public CodeItem genCode(){
+    public CodeItem genCode( ){
         HashMap symbolTable = CMinusCompiler.globalHash;
         symbolTable.put(id, symbolTable.size());
         return new Data(Data.TYPE_INT, id);

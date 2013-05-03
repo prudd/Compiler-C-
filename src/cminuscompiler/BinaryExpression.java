@@ -46,7 +46,7 @@ public class BinaryExpression extends Expression {
     @Override
     public void genCode(Function func) {
         BasicBlock currentBlock = func.getCurrBlock();
-        HashMap symbolTable = CMinusCompiler.globalHash;
+        HashMap symbolTable = func.getTable();
         tempReg = symbolTable.size();
         symbolTable.put(tempReg, tempReg);
         leftExpression.genCode(func);
