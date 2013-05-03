@@ -28,6 +28,7 @@ public class CMinusCompiler implements Compiler {
         return genX64Code;
     }
 
+    @Override
     public void compile(String filePrefix) throws ParseException {
         String fileName = filePrefix + ".c";
         try {
