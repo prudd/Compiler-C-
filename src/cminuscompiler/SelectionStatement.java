@@ -5,6 +5,8 @@ import java.io.IOException;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 /**
  *
@@ -41,7 +43,52 @@ public class SelectionStatement extends Statement {
     
     @Override
     public void genCode(Function func){
+        //Get Current Block
+        BasicBlock currBlock = func.getCurrBlock();
         
+        //Create 3 Blocks
+        BasicBlock thenBlock = new BasicBlock(func);
+        BasicBlock elseBlock = new BasicBlock(func);
+        BasicBlock postBlock = new BasicBlock(func);
+        
+        //genCode if-expr
+        expression.genCode(func.getCurrBlock());
+        
+        //make branch
+        Operation branchOp = new Operation(Operation.OperationType.BNE, currBlock);
+        branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
+        branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
+        branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, elseBlock.getBlockNum()));
+        
+        //append then
+        currBlock.setNextBlock(thenBlock);
+        thenBlock.setPrevBlock(currBlock);
+        
+        //set current block to thenBlock
+        func.setCurrBlock(thenBlock);
+        
+        //genCode then
+        statement.genCode(func);
+        
+        //append post
+        currBlock.setNextBlock(postBlock);
+        postBlock.setPrevBlock(currBlock);
+        
+        //set current block to elseBlock
+        func.setCurrBlock(elseBlock);
+        
+        //genCode elseStatement
+        elseStatement.genCode(func);
+        
+        //create jump to post
+        Operation jumpOp = new Operation(Operation.OperationType.JMP, currBlock);
+        jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+        
+        //Append elseBlock to unconnectedBlock
+        func.appendUnconnectedBlock(elseBlock);
+        
+        //Set current block to postBlock
+        func.setCurrBlock(postBlock);
     }
     
     @Override
