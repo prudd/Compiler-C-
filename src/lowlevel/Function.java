@@ -97,7 +97,6 @@ public class Function extends CodeItem {
     currBlock = null;
     symbolTable = new HashMap();
     maxRegNum = 0;
-    returnBlock = genReturnBlock();
     firstUnconnectedBlock = null;
     lastUnconnectedBlock = null;
     optimize = false;

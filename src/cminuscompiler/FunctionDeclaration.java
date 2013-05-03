@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.BasicBlock;
 import lowlevel.Data;
 import lowlevel.CodeItem;
 import lowlevel.Function;
@@ -58,7 +59,9 @@ public class FunctionDeclaration extends Declaration {
     public CodeItem genCode(){
         Function func = new Function(type, id);
         func.createBlock0();
-        func.setCurrBlock(func.getFirstBlock());
+        BasicBlock newBlock = new BasicBlock(func);
+        func.setCurrBlock(newBlock);
+        func.setLastBlock(func.genReturnBlock());
         
         for(Parameter p : parameters){
             
