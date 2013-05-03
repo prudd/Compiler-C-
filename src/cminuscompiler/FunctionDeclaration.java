@@ -14,6 +14,7 @@ import lowlevel.Function;
  * @author Paul Marshall
  */
 public class FunctionDeclaration extends Declaration {
+
     private int type;
     private String id;
     private LinkedList<Parameter> parameters = new LinkedList<>();
@@ -56,19 +57,21 @@ public class FunctionDeclaration extends Declaration {
     }
 
     @Override
-    public CodeItem genCode(){
+    public CodeItem genCode() {
         Function func = new Function(type, id);
         func.createBlock0();
         BasicBlock newBlock = new BasicBlock(func);
+        BasicBlock firstBlock = func.getFirstBlock();
+        firstBlock.setNextBlock(newBlock);
+        newBlock.setPrevBlock(firstBlock);
         func.setCurrBlock(newBlock);
         func.setLastBlock(func.genReturnBlock());
-        
-        for(Parameter p : parameters){
-            
+
+        for (Parameter p : parameters) {
         }
         return compoundStatement.genCode(func.getCurrBlock());
     }
-    
+
     @Override
     public void print(int level) {
         Iterator<Parameter> iterator = this.parameters.iterator();
