@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import lowlevel.CodeItem;
-import lowlevel.Data;
-import codegen.CMinusCodeGen;
-import codegen.CodeGen;
 
 /**
  *
