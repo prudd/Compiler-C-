@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import lowlevel.BasicBlock;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 /**
  *
