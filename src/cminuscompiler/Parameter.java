@@ -1,14 +1,18 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import lowlevel.Data;
+import lowlevel.FuncParam;
+import lowlevel.Function;
 
 /**
  *
  * @author Paul Marshall
  */
 public class Parameter {
-
     private String id;
     private boolean isArray;
 
@@ -26,6 +30,17 @@ public class Parameter {
 
     public void setIsArray(boolean isArray) {
         this.isArray = isArray;
+    }
+    
+    public void genCode(Function func){
+        HashMap symbolTable = CMinusCompiler.globalHash;
+        symbolTable.put(id, symbolTable.size());
+        if(func.getfirstParam() == null){
+            func.setFirstParam(new FuncParam(Data.TYPE_INT, id));
+        }
+        else{
+            func.getfirstParam().setNextParam(new FuncParam(Data.TYPE_INT, id));
+        }
     }
 
     public void print() {

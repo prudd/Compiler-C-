@@ -24,7 +24,7 @@ public class NumExpression extends Expression {
     @Override
     public void genCode(Function func){
         HashMap symbolTable = CMinusCompiler.globalHash;
-        this.tempReg = symbolTable.size();
+        tempReg = symbolTable.size();
         symbolTable.put(this.tempReg, this.tempReg);
     }
     
