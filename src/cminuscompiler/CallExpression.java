@@ -42,20 +42,23 @@ public class CallExpression extends Expression {
         currentBlock.setNextBlock(newBlock);
         newBlock.setPrevBlock(currentBlock);
         
+        func.setCurrBlock(newBlock);
         currentBlock = newBlock;
         
         // Call genCode on args in reverse order:
-        
+        // Add Operation to move each param to register:
         Iterator<Expression> intArgs = args.descendingIterator();
         while (intArgs.hasNext()) {
-            intArgs.next().genCode(func);
+            Expression exp = intArgs.next();
+            exp.genCode(func);
+            Operation passOp = new Operation(Operation.OperationType.PASS, currentBlock);
+            passOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, exp.getRegNum()));
+            currentBlock.appendOper(passOp);
         }
         
-        // Add Operation to move each param to register:
-        
         // Add call operation:
-        
-        
+        Operation callOp = new Operation(Operation.OperationType.CALL, currentBlock);
+        currentBlock.appendOper(callOp);
     }
     
     @Override
