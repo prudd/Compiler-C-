@@ -1,12 +1,15 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import lowlevel.BasicBlock;
 import lowlevel.Data;
 import lowlevel.CodeItem;
+import lowlevel.FuncParam;
 import lowlevel.Function;
 
 /**
@@ -66,10 +69,18 @@ public class FunctionDeclaration extends Declaration {
         newBlock.setPrevBlock(firstBlock);
         func.setCurrBlock(newBlock);
         func.setLastBlock(func.genReturnBlock());
-
-        for (Parameter p : parameters) {
-        }
         compoundStatement.genCode(func.getCurrBlock(), func);
+        for(int i = 0; i < parameters.size(); i++){
+            HashMap symbolTable = CMinusCompiler.globalHash; 
+            String currentParamID = parameters.get(i).getId();
+            symbolTable.put(currentParamID, symbolTable.size());
+            if(i == 0){
+                func.setFirstParam(new FuncParam(Data.TYPE_INT, currentParamID));
+            }
+            else{
+                func.getfirstParam().setNextParam(new FuncParam(Data.TYPE_INT, currentParamID));
+            }
+        }
         return func;
     }
 

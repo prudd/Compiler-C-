@@ -37,8 +37,7 @@ public class ReturnStatement extends Statement {
         currentBlock.appendOper(assignOp);
         int returnBlockNum = func.getLastBlock().getBlockNum();
         Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
-        assignOp.setSrcOperand(0, new Operand(OperandType.BLOCK, returnBlockNum));
-        
+        jumpOp.setSrcOperand(0, new Operand(OperandType.BLOCK, returnBlockNum));
     }
     
     @Override
