@@ -1,11 +1,11 @@
 int a;
- addThem(int d, int e)
+int addThem(int d, int e)
 {
 	int f;
 	f = d+e;
 	return f;
 }
- main(void)
+int main(void)
 {
 	int b;
 	int c;
