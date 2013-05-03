@@ -33,7 +33,7 @@ public class ReturnStatement extends Statement {
         assignOp.setSrcOperand(0, new Operand(OperandType.REGISTER, regNum));
         assignOp.setDestOperand(0, new Operand(OperandType.MACRO, "RetReg"));
         func.getCurrBlock().appendOper(assignOp);
-        int returnBlockNum = func.genReturnBlock().getBlockNum();
+        int returnBlockNum = func.getReturnBlock().getBlockNum();
         Operation jumpOp = new Operation(Operation.OperationType.JMP, func.getCurrBlock());
         jumpOp.setSrcOperand(0, new Operand(OperandType.BLOCK, returnBlockNum));
     }
