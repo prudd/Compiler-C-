@@ -10,6 +10,7 @@ import lowlevel.Function;
  * @author Paul Marshall
  */
 class VarExpression extends Expression {
+
     private String id;
     private Expression expression;
 
@@ -28,28 +29,34 @@ class VarExpression extends Expression {
     public void setExpression(Expression expression) {
         this.expression = expression;
     }
-    
+
     @Override
-    public void genCode(Function func){
-        tempReg = (Integer)(func.getTable().get(id));
+    public void genCode(Function func) {
+        if (func.getTable().get(id) != null) {
+            tempReg = (Integer) (func.getTable().get(id));
+        }
+        else{
+            tempReg = CMinusCompiler.globalHash.get(id);
+        }
+
     }
-    
+
     @Override
     public int getRegNum() {
         return this.tempReg;
     }
-    
+
     @Override
     public void print() {
         System.out.print(this.id);
-        
+
         if (this.expression != null) {
             System.out.print("[");
             this.expression.print();
             System.out.print("]");
         }
     }
-    
+
     @Override
     public void printFile(BufferedWriter bw) {
         try {
@@ -64,35 +71,35 @@ class VarExpression extends Expression {
             System.err.print("Error in VarExp printFile");
         }
     }
-    
+
     @Override
     public void printASTFile(BufferedWriter bw, int level) {
-        try {         
+        try {
             String inset = "";
             for (int i = 0; i < level; i++) {
                 inset += "\t";
             }
-            
+
             bw.append(inset + "VarExpression\n");
             bw.append(inset + "\t" + "Variable(" + this.id + ")\n");
 
             if (this.expression != null) {
-                this.expression.printASTFile(bw, level + 2);             
+                this.expression.printASTFile(bw, level + 2);
             }
         } catch (IOException ex) {
             System.err.print("Error in VarExp printASTFile");
         }
     }
-    
+
     public VarExpression(String id, Expression expression) {
         this.id = id;
         this.expression = expression;
     }
-    
+
     public VarExpression(String id) {
         this(id, null);
     }
-    
+
     public VarExpression() {
         this(null, null);
     }
