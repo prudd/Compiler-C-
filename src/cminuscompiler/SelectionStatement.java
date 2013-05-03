@@ -44,7 +44,7 @@ public class SelectionStatement extends Statement {
     @Override
     public void genCode(Function func){
         //Get Current Block
-        BasicBlock currBlock = func.getCurrBlock();
+        BasicBlock currentBlock = func.getCurrBlock();
         
         //Create 3 Blocks
         BasicBlock thenBlock = new BasicBlock(func);
@@ -55,33 +55,35 @@ public class SelectionStatement extends Statement {
         expression.genCode(func.getCurrBlock());
         
         //make branch
-        Operation branchOp = new Operation(Operation.OperationType.BNE, currBlock);
+        Operation branchOp = new Operation(Operation.OperationType.BNE, currentBlock);
         branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
         branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
         branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, elseBlock.getBlockNum()));
         
         //append then
-        currBlock.setNextBlock(thenBlock);
-        thenBlock.setPrevBlock(currBlock);
+        currentBlock.setNextBlock(thenBlock);
+        thenBlock.setPrevBlock(currentBlock);
         
         //set current block to thenBlock
         func.setCurrBlock(thenBlock);
+        currentBlock = thenBlock;
         
         //genCode then
         statement.genCode(func);
         
         //append post
-        currBlock.setNextBlock(postBlock);
-        postBlock.setPrevBlock(currBlock);
+        currentBlock.setNextBlock(postBlock);
+        postBlock.setPrevBlock(currentBlock);
         
         //set current block to elseBlock
         func.setCurrBlock(elseBlock);
+        currentBlock = elseBlock;
         
         //genCode elseStatement
         elseStatement.genCode(func);
         
         //create jump to post
-        Operation jumpOp = new Operation(Operation.OperationType.JMP, currBlock);
+        Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
         jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
         
         //Append elseBlock to unconnectedBlock
