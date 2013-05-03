@@ -33,7 +33,16 @@ public class IterationStatement extends Statement {
     
     @Override
     public void genCode(Function func){
-        
+        //iterateBlock
+        //postBlock
+        //genCode expr
+        //branch to post
+        //append whileBlock to current
+        //set current block to whileBlock
+        //genCode statement
+        //reverse polarity branch to iterateBlock
+        //append postBlock
+        //set current block to postBlock
     }
 
     @Override
