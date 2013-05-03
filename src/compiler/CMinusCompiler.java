@@ -126,7 +126,7 @@ public class CMinusCompiler implements Compiler {
     }
 
     public static void main(String[] args) throws ParseException {
-        String filePrefix = "test5";
+        String filePrefix = "testcode";
         Compiler myCompiler = new CMinusCompiler();
         setGenX64Code(true);
         myCompiler.compile(filePrefix);

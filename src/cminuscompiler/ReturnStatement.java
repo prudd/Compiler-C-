@@ -27,12 +27,13 @@ public class ReturnStatement extends Statement {
     public void genCode(Function func){
         if(expression != null){
             expression.genCode(func);
+            int regNum = expression.getRegNum();
+            Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());
+            assignOp.setSrcOperand(0, new Operand(OperandType.REGISTER, regNum));
+            assignOp.setDestOperand(0, new Operand(OperandType.MACRO, "RetReg"));
+            func.getCurrBlock().appendOper(assignOp);
         }
-        int regNum = expression.getRegNum();
-        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());
-        assignOp.setSrcOperand(0, new Operand(OperandType.REGISTER, regNum));
-        assignOp.setDestOperand(0, new Operand(OperandType.MACRO, "RetReg"));
-        func.getCurrBlock().appendOper(assignOp);
+        
         int returnBlockNum = func.getReturnBlock().getBlockNum();
         Operation jumpOp = new Operation(Operation.OperationType.JMP, func.getCurrBlock());
         jumpOp.setSrcOperand(0, new Operand(OperandType.BLOCK, returnBlockNum));
