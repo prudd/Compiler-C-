@@ -46,6 +46,11 @@ public class CallExpression extends Expression {
         
         // Call genCode on args in reverse order:
         
+        Iterator<Expression> intArgs = args.descendingIterator();
+        while (intArgs.hasNext()) {
+            intArgs.next().genCode(func);
+        }
+        
         // Add Operation to move each param to register:
         
         // Add call operation:
