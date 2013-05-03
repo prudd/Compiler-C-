@@ -1,7 +1,7 @@
 package cminuscompiler;
 
 import java.io.BufferedWriter;
-import lowlevel.BasicBlock;
+import lowlevel.Function;
 
 /**
  *
@@ -9,7 +9,7 @@ import lowlevel.BasicBlock;
  */
 abstract public class Expression {
     protected int tempReg;
-    abstract public void genCode(BasicBlock compoundBlock);
+    abstract public void genCode(Function func);
     abstract public int getRegNum();
     abstract public void print();
     abstract public void printFile(BufferedWriter bw);

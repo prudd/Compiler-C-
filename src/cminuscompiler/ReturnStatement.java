@@ -26,7 +26,7 @@ public class ReturnStatement extends Statement {
     @Override
     public void genCode(Function func){
         if(expression != null){
-            expression.genCode(func.getCurrBlock());
+            expression.genCode(func);
         }
         int regNum = expression.getRegNum();
         Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());

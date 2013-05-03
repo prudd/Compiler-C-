@@ -2,9 +2,6 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import lowlevel.BasicBlock;
-import lowlevel.CodeItem;
-import lowlevel.Data;
 import lowlevel.Function;
 
 /**
@@ -24,7 +21,7 @@ public class ExpressionStatement extends Statement {
     
     @Override
     public void genCode(Function func){
-        
+        expression.genCode(null);
     }
     
     @Override

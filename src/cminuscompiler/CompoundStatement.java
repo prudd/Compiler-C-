@@ -1,14 +1,11 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import lowlevel.BasicBlock;
-import lowlevel.CodeItem;
-import lowlevel.Data;
-import compiler.CMinusCompiler;
-import java.util.HashMap;
 import lowlevel.Function;
 
 /**
