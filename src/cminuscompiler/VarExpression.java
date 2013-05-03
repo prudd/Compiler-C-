@@ -35,7 +35,7 @@ class VarExpression extends Expression {
         if (func.getTable().get(id) != null) {
             tempReg = (Integer) (func.getTable().get(id));
         }
-        else{
+        else {
             tempReg = CMinusCompiler.globalHash.get(id);
         }
 
