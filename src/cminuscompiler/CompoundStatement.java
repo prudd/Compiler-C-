@@ -8,6 +8,7 @@ import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Data;
 import compiler.CMinusCompiler;
+import java.util.HashMap;
 
 /**
  *
@@ -43,8 +44,9 @@ public class CompoundStatement extends Statement {
     
     @Override
     public CodeItem genCode(BasicBlock currentBlock){
+        HashMap symbolTable = CMinusCompiler.globalHash;
         for(Declaration d : declarations){
-            CMinusCompiler.globalHash.put(((VariableDeclaration) d).getId(), CMinusCompiler.globalHash.size());
+            symbolTable.put(((VariableDeclaration) d).getId(), symbolTable.size());
         }
         return new Data();
     }

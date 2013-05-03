@@ -3,6 +3,7 @@ package cminuscompiler;
 import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import lowlevel.CodeItem;
 import lowlevel.Data;
 
@@ -32,7 +33,8 @@ public class VariableDeclaration extends Declaration {
     
     @Override
     public CodeItem genCode(){
-        CMinusCompiler.globalHash.put(id, CMinusCompiler.globalHash.size());
+        HashMap symbolTable = CMinusCompiler.globalHash;
+        symbolTable.put(id, symbolTable.size());
         return new Data(Data.TYPE_INT, id);
     }
     
