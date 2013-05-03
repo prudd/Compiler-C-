@@ -58,6 +58,7 @@ public class SelectionStatement extends Statement {
         branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
         branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
         branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, elseBlock.getBlockNum()));
+        currentBlock.appendOper(branchOp);
         
         //append then
         currentBlock.setNextBlock(thenBlock);
@@ -84,6 +85,7 @@ public class SelectionStatement extends Statement {
         //create jump to post
         Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
         jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+        currentBlock.appendOper(jumpOp);
         
         //Append elseBlock to unconnectedBlock
         func.appendUnconnectedBlock(elseBlock);

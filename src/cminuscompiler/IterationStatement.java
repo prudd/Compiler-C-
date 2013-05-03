@@ -49,7 +49,8 @@ public class IterationStatement extends Statement {
         branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
         branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
         branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
-
+        currentBlock.appendOper(branchOp);
+        
         //append whileBlock to current
         currentBlock.setNextBlock(whileBlock);
         whileBlock.setPrevBlock(currentBlock);
@@ -66,6 +67,8 @@ public class IterationStatement extends Statement {
         branchOp2.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
         branchOp2.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
         branchOp2.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+        currentBlock.appendOper(branchOp2);
+        
         //append postBlock
         currentBlock.setNextBlock(postBlock);
         whileBlock.setPrevBlock(currentBlock);
