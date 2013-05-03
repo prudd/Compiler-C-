@@ -72,6 +72,7 @@ public class CallExpression extends Expression {
         Operation assignOp = new Operation(Operation.OperationType.ASSIGN, currentBlock);
         assignOp.setSrcOperand(0, new Operand(Operand.OperandType.MACRO, "retReg"));
         assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, tempReg));
+        currentBlock.appendOper(assignOP);
     }
 
     @Override
