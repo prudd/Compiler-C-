@@ -1,5 +1,6 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import lowlevel.Function;
@@ -30,7 +31,7 @@ class VarExpression extends Expression {
     
     @Override
     public void genCode(Function func){
-        
+        CMinusCompiler.globalHash
     }
     
     @Override

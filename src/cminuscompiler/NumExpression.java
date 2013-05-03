@@ -1,7 +1,9 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import lowlevel.Function;
 
 /**
@@ -21,7 +23,9 @@ public class NumExpression extends Expression {
     
     @Override
     public void genCode(Function func){
-        
+        HashMap symbolTable = CMinusCompiler.globalHash;
+        this.tempReg = symbolTable.size();
+        symbolTable.put(this.tempReg, this.tempReg);
     }
     
     @Override
