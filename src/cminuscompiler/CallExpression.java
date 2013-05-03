@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.BasicBlock;
 
 /**
  *
@@ -28,6 +29,11 @@ public class CallExpression extends Expression {
 
     public void setArgs(LinkedList<Expression> args) {
         this.args = args;
+    }
+    
+    @Override
+    public void genCode(BasicBlock currentBlock){
+        
     }
 
     @Override

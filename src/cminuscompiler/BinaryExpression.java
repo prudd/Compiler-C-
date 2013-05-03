@@ -2,6 +2,7 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.BasicBlock;
 
 /**
  *
@@ -35,6 +36,11 @@ public class BinaryExpression extends Expression {
 
     public void setOperator(String operator) {
         this.operator = operator;
+    }
+    
+    @Override
+    public void genCode(BasicBlock currentBlock){
+        
     }
 
     @Override

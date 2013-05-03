@@ -22,8 +22,10 @@ public class ReturnStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(BasicBlock currentBlock){
-        
+    public void genCode(BasicBlock currentBlock){
+        if(expression != null){
+            expression.genCode(currentBlock);
+        }
     }
     
     @Override

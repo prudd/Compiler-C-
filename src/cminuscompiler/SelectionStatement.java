@@ -39,7 +39,7 @@ public class SelectionStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(BasicBlock currentBlock){
+    public void genCode(BasicBlock currentBlock){
         
     }
     

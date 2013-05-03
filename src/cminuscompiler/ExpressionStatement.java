@@ -22,7 +22,7 @@ public class ExpressionStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(BasicBlock currentBlock){
+    public void genCode(BasicBlock currentBlock){
         
     }
     

@@ -2,6 +2,7 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.BasicBlock;
 
 /**
  *
@@ -25,6 +26,11 @@ class VarExpression extends Expression {
 
     public void setExpression(Expression expression) {
         this.expression = expression;
+    }
+    
+    @Override
+    public void genCode(BasicBlock currentBlock){
+        
     }
     
     @Override

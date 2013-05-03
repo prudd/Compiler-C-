@@ -43,12 +43,14 @@ public class CompoundStatement extends Statement {
     }
     
     @Override
-    public CodeItem genCode(BasicBlock currentBlock){
+    public void genCode(BasicBlock currentBlock){
         HashMap symbolTable = CMinusCompiler.globalHash;
         for(Declaration d : declarations){
             symbolTable.put(((VariableDeclaration) d).getId(), symbolTable.size());
         }
-        return new Data();
+        for(Statement s : statements){
+            s.genCode(currentBlock);
+        }
     }
     
     @Override

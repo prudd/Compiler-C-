@@ -2,6 +2,7 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import lowlevel.BasicBlock;
 
 /**
  *
@@ -16,6 +17,11 @@ public class NumExpression extends Expression {
 
     public void setNum(int num) {
         this.num = num;
+    }
+    
+    @Override
+    public void genCode(BasicBlock currentBlock){
+        
     }
     
     @Override
