@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 /**
  *
@@ -27,6 +29,10 @@ public class NumExpression extends Expression {
         HashMap symbolTable = func.getTable();
         tempReg = symbolTable.size() + CMinusCompiler.globalHash.size();
         func.getTable().put(tempReg, tempReg);
+        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());
+        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.INTEGER, getNum()));
+        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, tempReg));
+        func.getCurrBlock().appendOper(assignOp);
     }
 
     @Override

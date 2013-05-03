@@ -66,7 +66,7 @@ public class CallExpression extends Expression {
 
         // Add call operation:
         Operation callOp = new Operation(Operation.OperationType.CALL, currentBlock);
-        callOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, id));
+        callOp.setSrcOperand(0, new Operand(Operand.OperandType.STRING, id));
         callOp.addAttribute(new Attribute("numParams", Integer.toString(args.size())));
         currentBlock.appendOper(callOp);
         
