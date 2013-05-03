@@ -42,7 +42,7 @@ public class CompoundStatement extends Statement {
     
     @Override
     public void genCode(Function func){
-        HashMap symbolTable = CMinusCompiler.globalHash;
+        HashMap symbolTable = func.getTable();
         for(Declaration d : declarations){
             symbolTable.put(((VariableDeclaration) d).getId(), symbolTable.size());
         }
