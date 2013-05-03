@@ -49,7 +49,7 @@ public class Program {
     public void printFile(String source, int level) {
         String delims = "[.]";
         String[] sourceParse = source.split(delims);
-        File file = new File(sourceParse[0] + ".c");
+        File file = new File(sourceParse[0] + ".cout");
         FileWriter fw;
         try {
             fw = new FileWriter(file.getAbsoluteFile());
