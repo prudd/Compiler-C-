@@ -65,11 +65,11 @@ public class FunctionDeclaration extends Declaration {
         func.appendToCurrentBlock(newBlock);
         func.setCurrBlock(newBlock);
         func.genReturnBlock();
-        compoundStatement.genCode(func);
-        func.appendBlock(func.getReturnBlock());
         for (Parameter p : parameters) {
             p.genCode(func);
         }
+        compoundStatement.genCode(func);
+        func.appendBlock(func.getReturnBlock());
         if (func.getFirstUnconnectedBlock() != null) {
             func.appendBlock(func.getFirstUnconnectedBlock());
         }
