@@ -57,7 +57,11 @@ public class SelectionStatement extends Statement {
         Operation branchOp = new Operation(Operation.OperationType.BNE, currentBlock);
         branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
         branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
-        branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, elseBlock.getBlockNum()));
+        if (elseStatement != null) {
+            branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, elseBlock.getBlockNum()));
+        } else {
+            branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+        }
         currentBlock.appendOper(branchOp);
         
         //append then
@@ -65,7 +69,6 @@ public class SelectionStatement extends Statement {
         
         //set current block to thenBlock
         func.setCurrBlock(thenBlock);
-        currentBlock = thenBlock;
         
         //genCode then
         statement.genCode(func);
@@ -73,20 +76,22 @@ public class SelectionStatement extends Statement {
         //append post
         func.appendToCurrentBlock(postBlock);
         
-        //set current block to elseBlock
-        func.setCurrBlock(elseBlock);
-        currentBlock = elseBlock;
-        
-        //genCode elseStatement
-        elseStatement.genCode(func);
-        
-        //create jump to post
-        Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
-        jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
-        currentBlock.appendOper(jumpOp);
-        
-        //Append elseBlock to unconnectedBlock
-        func.appendUnconnectedBlock(elseBlock);
+        if (elseStatement != null) {
+            //set current block to elseBlock
+            func.setCurrBlock(elseBlock);
+            currentBlock = elseBlock;
+
+            //genCode elseStatement
+            elseStatement.genCode(func);
+
+            //create jump to post
+            Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
+            jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+            currentBlock.appendOper(jumpOp);
+
+            //Append elseBlock to unconnectedBlock
+            func.appendUnconnectedBlock(elseBlock);
+        }
         
         //Set current block to postBlock
         func.setCurrBlock(postBlock);
