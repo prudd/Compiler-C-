@@ -1,7 +1,9 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import lowlevel.BasicBlock;
@@ -33,20 +35,20 @@ public class CallExpression extends Expression {
     public void setArgs(LinkedList<Expression> args) {
         this.args = args;
     }
-    
+
     @Override
-    public void genCode(Function func){
+    public void genCode(Function func) {
         // Start a new basic block to try and help with register allocation
         // later.
         BasicBlock currentBlock = func.getCurrBlock();
         BasicBlock newBlock = new BasicBlock(func);
-        
+
         currentBlock.setNextBlock(newBlock);
         newBlock.setPrevBlock(currentBlock);
-        
+
         func.setCurrBlock(newBlock);
         currentBlock = newBlock;
-        
+
         // Call genCode on args in reverse order:
         // Add Operation to move each param to register:
         Iterator<Expression> intArgs = args.descendingIterator();
@@ -57,12 +59,21 @@ public class CallExpression extends Expression {
             passOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, exp.getRegNum()));
             currentBlock.appendOper(passOp);
         }
-        
+
         // Add call operation:
         Operation callOp = new Operation(Operation.OperationType.CALL, currentBlock);
+        callOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, id));
         currentBlock.appendOper(callOp);
+        
+        //Assign retReg to a new register
+        HashMap symbolTable = CMinusCompiler.globalHash;
+        tempReg = symbolTable.size();
+        symbolTable.put(tempReg, tempReg);
+        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, currentBlock);
+        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.MACRO, "retReg"));
+        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, tempReg));
     }
-    
+
     @Override
     public int getRegNum() {
         return this.tempReg;
