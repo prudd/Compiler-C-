@@ -70,16 +70,8 @@ public class FunctionDeclaration extends Declaration {
         func.setCurrBlock(newBlock);
         func.setLastBlock(func.genReturnBlock());
         compoundStatement.genCode(func);
-        for(int i = 0; i < parameters.size(); i++){
-            HashMap symbolTable = CMinusCompiler.globalHash; 
-            String currentParamID = parameters.get(i).getId();
-            symbolTable.put(currentParamID, symbolTable.size());
-            if(i == 0){
-                func.setFirstParam(new FuncParam(Data.TYPE_INT, currentParamID));
-            }
-            else{
-                func.getfirstParam().setNextParam(new FuncParam(Data.TYPE_INT, currentParamID));
-            }
+        for(Parameter p : parameters){
+            p.genCode(func);
         }
         return func;
     }
