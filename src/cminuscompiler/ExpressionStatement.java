@@ -2,9 +2,6 @@ package cminuscompiler;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import lowlevel.BasicBlock;
-import lowlevel.CodeItem;
-import lowlevel.Data;
 import lowlevel.Function;
 
 /**
