@@ -65,7 +65,6 @@ public class SelectionStatement extends Statement {
         
         //set current block to thenBlock
         func.setCurrBlock(thenBlock);
-        currentBlock = thenBlock;
         
         //genCode then
         statement.genCode(func);
