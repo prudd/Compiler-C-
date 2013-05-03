@@ -3,12 +3,15 @@ package cminuscompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 /**
  *
  * @author Paul Marshall
  */
 public class AssignmentExpression extends Expression {
+
     private VarExpression variable;
     private Expression expression;
 
@@ -27,17 +30,22 @@ public class AssignmentExpression extends Expression {
     public void setExpression(Expression expression) {
         this.expression = expression;
     }
-    
+
     @Override
-    public void genCode(Function func){
-        
+    public void genCode(Function func) {
+        expression.genCode(func);
+        variable.genCode(func);
+        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());
+        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, variable.getRegNum()));
+        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
+        func.getCurrBlock().appendOper(assignOp);
     }
-    
+
     @Override
     public int getRegNum() {
         return this.tempReg;
     }
-    
+
     @Override
     public void print() {
         this.variable.print();
@@ -55,7 +63,7 @@ public class AssignmentExpression extends Expression {
             System.err.print("Error in AssignExp printFile");
         }
     }
-    
+
     @Override
     public void printASTFile(BufferedWriter bw, int level) {
         try {
@@ -64,7 +72,7 @@ public class AssignmentExpression extends Expression {
             for (int i = 0; i < level; i++) {
                 inset += "\t";
             }
-            
+
             bw.append(inset + "AssignmentExpression\n");
             this.variable.printASTFile(bw, level + 1);
             this.expression.printASTFile(bw, level + 1);
@@ -72,12 +80,12 @@ public class AssignmentExpression extends Expression {
             System.err.print("Error in AssignExp printFile");
         }
     }
-    
+
     public AssignmentExpression(VarExpression variable, Expression expression) {
         this.variable = variable;
         this.expression = expression;
     }
-    
+
     public AssignmentExpression() {
         this(null, null);
     }
