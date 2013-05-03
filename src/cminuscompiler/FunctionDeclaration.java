@@ -60,13 +60,13 @@ public class FunctionDeclaration extends Declaration {
     public CodeItem genCode() {
         Function func = new Function(type, id);
         func.createBlock0();
+        func.setCurrBlock(func.getFirstBlock());
         BasicBlock newBlock = new BasicBlock(func);
-        BasicBlock firstBlock = func.getFirstBlock();
-        firstBlock.setNextBlock(newBlock);
-        newBlock.setPrevBlock(firstBlock);
+        func.appendToCurrentBlock(newBlock);
         func.setCurrBlock(newBlock);
         func.genReturnBlock();
         compoundStatement.genCode(func);
+        func.appendBlock(func.getReturnBlock());
         for (Parameter p : parameters) {
             p.genCode(func);
         }
