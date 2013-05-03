@@ -1,4 +1,26 @@
+(DATA  a)
+(FUNCTION  addThem  [(int d) (int e)]
+  (BB 0
+    (OPER 1 Func_Entry []  [])
+  )
+  (BB 1
+    (OPER 4 Mov [(m RetReg)]  [(r 1)])
+  )
+  (BB 2
+    (OPER 2 Func_Exit []  [])
+    (OPER 3 Return []  [(m RetReg)])
+  )
+)
 (FUNCTION  main  []
+  (BB 0
+    (OPER 1 Func_Entry []  [])
+  )
+  (BB 1
+    (OPER 4 EQ [(r 9)]  [(r 4)(r 10)])
+  )
+  (BB 5
+    (OPER 7 LTE [(r 11)]  [(r 8)(r 12)])
+  )
   (BB 8
     (OPER 10 Add_I [(r 13)]  [(r 5)(r 6)])
     (OPER 11 Pass []  [(r 13)])
@@ -10,5 +32,9 @@
     (OPER 15 JSR []  [(r putchar)])
     (OPER 16 Mov [(r 16)]  [(m retReg)])
     (OPER 17 Mov [(m RetReg)]  [(r 17)])
+  )
+  (BB 2
+    (OPER 2 Func_Exit []  [])
+    (OPER 3 Return []  [(m RetReg)])
   )
 )
