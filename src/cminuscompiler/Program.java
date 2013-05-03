@@ -48,7 +48,7 @@ public class Program {
             }
             previousItem = currentItem;
         }
-        return previousItem;
+        return firstItem;
     }
     
     public void printFile(String source, int level) {
