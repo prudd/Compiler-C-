@@ -1,0 +1,14 @@
+(FUNCTION  main  []
+  (BB 8
+    (OPER 10 Add_I [(r 13)]  [(r 5)(r 6)])
+    (OPER 11 Pass []  [(r 13)])
+    (OPER 12 JSR []  [(r putchar)])
+    (OPER 13 Mov [(r 14)]  [(m retReg)])
+  )
+  (BB 9
+    (OPER 14 Pass []  [(r 15)])
+    (OPER 15 JSR []  [(r putchar)])
+    (OPER 16 Mov [(r 16)]  [(m retReg)])
+    (OPER 17 Mov [(m RetReg)]  [(r 17)])
+  )
+)
