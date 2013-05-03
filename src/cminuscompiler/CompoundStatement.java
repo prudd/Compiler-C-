@@ -44,7 +44,7 @@ public class CompoundStatement extends Statement {
     public void genCode(Function func){
         HashMap symbolTable = func.getTable();
         for(Declaration d : declarations){
-            symbolTable.put(((VariableDeclaration) d).getId(), symbolTable.size() + CMinusCompiler.globalHash.size());
+            symbolTable.put(((VariableDeclaration) d).getId(), func.getNewRegNum());
         }
         for(Statement s : statements){
             s.genCode(func);

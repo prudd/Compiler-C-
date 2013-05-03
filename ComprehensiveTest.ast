@@ -1,0 +1,7 @@
+Program
+	Function Declaration(1 function)
+	Parameters
+		int a
+	Body
+		CompoundStatment
+			ReturnStatement

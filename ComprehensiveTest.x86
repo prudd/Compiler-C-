@@ -1,0 +1,8 @@
+(FUNCTION  function  [(int a)]
+  (BB 0
+    (OPER 5 Mov [(r 0)]  [(m EDI)])
+  )
+  (BB 2
+    (OPER 3 Return []  [(m EAX)])
+  )
+)

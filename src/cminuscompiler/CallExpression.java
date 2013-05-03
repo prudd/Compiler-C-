@@ -72,7 +72,7 @@ public class CallExpression extends Expression {
         
         //Assign retReg to a new register
         HashMap symbolTable = func.getTable();
-        tempReg = symbolTable.size() + CMinusCompiler.globalHash.size();
+        tempReg = func.getNewRegNum();
         symbolTable.put(tempReg, tempReg);
         Operation assignOp = new Operation(Operation.OperationType.ASSIGN, currentBlock);
         assignOp.setSrcOperand(0, new Operand(Operand.OperandType.MACRO, "retReg"));

@@ -27,7 +27,7 @@ public class NumExpression extends Expression {
     @Override
     public void genCode(Function func) {
         HashMap symbolTable = func.getTable();
-        tempReg = symbolTable.size() + CMinusCompiler.globalHash.size();
+        tempReg = func.getNewRegNum();
         func.getTable().put(tempReg, tempReg);
         Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());
         assignOp.setSrcOperand(0, new Operand(Operand.OperandType.INTEGER, getNum()));

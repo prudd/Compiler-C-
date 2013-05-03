@@ -47,7 +47,7 @@ public class BinaryExpression extends Expression {
     public void genCode(Function func) {
         BasicBlock currentBlock = func.getCurrBlock();
         HashMap symbolTable = func.getTable();
-        tempReg = symbolTable.size() + CMinusCompiler.globalHash.size();
+        tempReg = func.getNewRegNum();
         symbolTable.put(tempReg, tempReg);
         leftExpression.genCode(func);
         rightExpression.genCode(func);
