@@ -1121,7 +1121,7 @@ public class CMinusParser implements Parser {
     @Override
     public void printTree(String destination) {
         this.program.print(0);
-        //this.program.printFile(destination, 0);
+        this.program.printFile(destination, 0);
         this.program.printASTFile(destination, 0);
     }
 
