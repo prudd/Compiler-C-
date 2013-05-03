@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import lowlevel.BasicBlock;
 import lowlevel.Function;
 
 /**
@@ -33,6 +34,22 @@ public class CallExpression extends Expression {
     
     @Override
     public void genCode(Function func){
+        // Start a new basic block to try and help with register allocation
+        // later.
+        BasicBlock currentBlock = func.getCurrBlock();
+        BasicBlock newBlock = new BasicBlock(func);
+        
+        currentBlock.setNextBlock(newBlock);
+        newBlock.setPrevBlock(currentBlock);
+        
+        currentBlock = newBlock;
+        
+        // Call genCode on args in reverse order:
+        
+        // Add Operation to move each param to register:
+        
+        // Add call operation:
+        
         
     }
     
