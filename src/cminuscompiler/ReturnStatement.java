@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
+import lowlevel.Function;
 import lowlevel.Operand;
 import lowlevel.Operand.OperandType;
 import lowlevel.Operation;
@@ -25,7 +26,7 @@ public class ReturnStatement extends Statement {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock){
+    public void genCode(BasicBlock currentBlock, Function func){
         if(expression != null){
             expression.genCode(currentBlock);
         }
@@ -34,6 +35,9 @@ public class ReturnStatement extends Statement {
         assignOp.setSrcOperand(0, new Operand(OperandType.REGISTER, regNum));
         assignOp.setDestOperand(0, new Operand(OperandType.MACRO, "RetReg"));
         currentBlock.appendOper(assignOp);
+        int returnBlockNum = func.getLastBlock().getBlockNum();
+        Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
+        assignOp.setSrcOperand(0, new Operand(OperandType.BLOCK, returnBlockNum));
         
     }
     
