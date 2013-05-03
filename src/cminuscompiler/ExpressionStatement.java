@@ -23,7 +23,7 @@ public class ExpressionStatement extends Statement {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock, Function func){
+    public void genCode(Function func){
         
     }
     

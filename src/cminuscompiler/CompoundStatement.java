@@ -44,13 +44,13 @@ public class CompoundStatement extends Statement {
     }
     
     @Override
-    public void genCode(BasicBlock currentBlock, Function func){
+    public void genCode(Function func){
         HashMap symbolTable = CMinusCompiler.globalHash;
         for(Declaration d : declarations){
             symbolTable.put(((VariableDeclaration) d).getId(), symbolTable.size());
         }
         for(Statement s : statements){
-            s.genCode(currentBlock, func);
+            s.genCode(func);
         }
     }
     

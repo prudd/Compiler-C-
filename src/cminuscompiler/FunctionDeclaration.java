@@ -69,7 +69,7 @@ public class FunctionDeclaration extends Declaration {
         newBlock.setPrevBlock(firstBlock);
         func.setCurrBlock(newBlock);
         func.setLastBlock(func.genReturnBlock());
-        compoundStatement.genCode(func.getCurrBlock(), func);
+        compoundStatement.genCode(func);
         for(int i = 0; i < parameters.size(); i++){
             HashMap symbolTable = CMinusCompiler.globalHash; 
             String currentParamID = parameters.get(i).getId();
