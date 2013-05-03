@@ -1,5 +1,6 @@
 package cminuscompiler;
 
+import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import lowlevel.CodeItem;
@@ -31,6 +32,7 @@ public class VariableDeclaration extends Declaration {
     
     @Override
     public CodeItem genCode(){
+        CMinusCompiler.globalHash.put(id, CMinusCompiler.globalHash.size());
         return new Data(Data.TYPE_INT, id);
     }
     
