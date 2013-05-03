@@ -1,0 +1,59 @@
+(FUNCTION  test  []
+  (BB 0
+  )
+  (BB 1
+    (OPER 4 Mov [(r 3)]  [(i 0)])
+    (OPER 5 Mov [(r 1)]  [(r 3)])
+    (OPER 6 Mov [(r 4)]  [(i 1)])
+    (OPER 7 Mov [(r 2)]  [(r 4)])
+    (OPER 8 Mov [(r 5)]  [(i 0)])
+    (OPER 9 Mov [(r 2)]  [(r 5)])
+    (OPER 10 Mov [(r 1)]  [(r 0)])
+    (OPER 55 Cmp [(m Flags)]  [(r 1)(r 2)])
+    (OPER 56 BGT []  [(bb 4)(m Flags)])
+  )
+  (BB 3
+    (OPER 13 Mov [(r 8)]  [(i 1)])
+    (OPER 57 Mov [(r 7)]  [(r 2)])
+    (OPER 14 Sub_I [(r 7)]  [(r 7)(r 8)])
+    (OPER 15 Mov [(r 2)]  [(r 7)])
+  )
+  (BB 5
+    (OPER 58 Cmp [(m Flags)]  [(r 1)(r 2)])
+    (OPER 59 BEQ []  [(bb 15)(m Flags)])
+  )
+  (BB 13
+    (OPER 60 Cmp [(m Flags)]  [(r 1)(r 2)])
+    (OPER 61 BEQ []  [(bb 15)(m Flags)])
+  )
+  (BB 16
+    (OPER 62 Cmp [(m Flags)]  [(r 1)(r 2)])
+    (OPER 63 BEQ []  [(bb 15)(m Flags)])
+    (OPER 64 Cmp [(m Flags)]  [(r 23)(i 1)])
+    (OPER 51 BEQ []  [(bb 15)(m Flags)()
+])
+  )
+  (BB 18
+    (OPER 47 Mov [(r 26)]  [(i 1)])
+    (OPER 65 Mov [(r 25)]  [(r 2)])
+    (OPER 48 Sub_I [(r 25)]  [(r 25)(r 26)])
+    (OPER 49 Mov [(r 1)]  [(r 25)])
+  )
+  (BB 15
+    (OPER 52 Mov [(r 27)]  [(i 3)])
+    (OPER 53 Mov [(r 2)]  [(r 27)])
+  )
+  (BB 2
+    (OPER 3 Return []  [(m EAX)])
+  )
+  (BB 4
+    (OPER 16 Mov [(r 9)]  [(i 2)])
+    (OPER 17 Mov [(r 2)]  [(r 9)])
+    (OPER 18 Mov [(r 11)]  [(i 2)])
+    (OPER 66 Cmp [(m Flags)]  [(r 2)(r 11)])
+    (OPER 67 BEQ []  [(bb 7)(m Flags)])
+    (OPER 40 Jmp []  [(bb 5)])
+  )
+  (BB 7
+  )
+)
