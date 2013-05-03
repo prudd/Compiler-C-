@@ -54,11 +54,14 @@ public class CallExpression extends Expression {
         // Add Operation to move each param to register:
         Iterator<Expression> intArgs = args.descendingIterator();
         while (intArgs.hasNext()) {
+            int i = 0;
             Expression exp = intArgs.next();
             exp.genCode(func);
             Operation passOp = new Operation(Operation.OperationType.PASS, currentBlock);
             passOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, exp.getRegNum()));
+            passOp.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i)));
             currentBlock.appendOper(passOp);
+            i++;
         }
 
         // Add call operation:
