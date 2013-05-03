@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
+import lowlevel.Operand;
+import lowlevel.Operand.OperandType;
+import lowlevel.Operation;
 
 /**
  *
@@ -26,6 +29,12 @@ public class ReturnStatement extends Statement {
         if(expression != null){
             expression.genCode(currentBlock);
         }
+        int regNum = expression.getRegNum();
+        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, currentBlock);
+        assignOp.setSrcOperand(0, new Operand(OperandType.REGISTER, regNum));
+        assignOp.setDestOperand(0, new Operand(OperandType.REGISTER));
+        Operation returnOp = new Operation(Operation.OperationType.RETURN, currentBlock);
+        currentBlock.appendOper(returnOp);
     }
     
     @Override
@@ -43,7 +52,6 @@ public class ReturnStatement extends Statement {
 
     @Override
     public void printFile(BufferedWriter bw, int level) {
-
         try {
 
             for (int i = 0; i < level; i++) {
