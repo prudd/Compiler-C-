@@ -64,6 +64,7 @@ public class FunctionDeclaration extends Declaration {
         firstBlock.setNextBlock(newBlock);
         newBlock.setPrevBlock(firstBlock);
         func.setCurrBlock(newBlock);
+        func.genReturnBlock();
         compoundStatement.genCode(func);
         for(Parameter p : parameters){
             p.genCode(func);
