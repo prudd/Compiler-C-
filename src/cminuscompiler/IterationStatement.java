@@ -6,12 +6,15 @@ import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Data;
 import lowlevel.Function;
+import lowlevel.Operand;
+import lowlevel.Operation;
 
 /**
  *
  * @author Paul Marshall
  */
 public class IterationStatement extends Statement {
+
     private Expression expression;
     private Statement statement;
 
@@ -30,35 +33,63 @@ public class IterationStatement extends Statement {
     public void setStatement(Statement statement) {
         this.statement = statement;
     }
-    
+
     @Override
-    public void genCode(Function func){
-        //whileBlock
-        //postBlock
+    public void genCode(Function func) {
+        //get current block
+        BasicBlock currentBlock = func.getCurrBlock();
+
+        //create 2 blocks
+        BasicBlock whileBlock = new BasicBlock(func);
+        BasicBlock postBlock = new BasicBlock(func);
+
         //genCode expr
+        expression.genCode(currentBlock);
+
         //branch to post
+        Operation branchOp = new Operation(Operation.OperationType.BNE, currentBlock);
+        branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
+        branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
+        branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+
         //append whileBlock to current
+        currentBlock.setNextBlock(whileBlock);
+        whileBlock.setPrevBlock(currentBlock);
+
         //set current block to whileBlock
+        func.setCurrBlock(whileBlock);
+        currentBlock = whileBlock;
+
         //genCode statement
+        statement.genCode(func);
+
         //reverse polarity branch to whileBlock
+        Operation branchOp2 = new Operation(Operation.OperationType.BEQ, currentBlock);
+        branchOp2.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
+        branchOp2.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
+        branchOp2.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
         //append postBlock
+        currentBlock.setNextBlock(postBlock);
+        whileBlock.setPrevBlock(currentBlock);
+
         //set current block to postBlock
+        func.setCurrBlock(postBlock);
     }
 
     @Override
     public void print(int level) {
         String inset = "";
-        
+
         for (int i = 0; i < level; i++) {
             inset += "\t";
         }
-        
+
         System.out.print(inset + "while (");
         this.expression.print();
         System.out.println(")");
         this.statement.print(level + 1);
     }
-    
+
     @Override
     public void printFile(BufferedWriter bw, int level) {
         try {
@@ -76,7 +107,7 @@ public class IterationStatement extends Statement {
             System.err.print("Error in IternationStmt printFile");
         }
     }
-    
+
     @Override
     public void printASTFile(BufferedWriter bw, int level) {
         try {
@@ -95,12 +126,12 @@ public class IterationStatement extends Statement {
             System.err.print("Error in IternationStmt printASTFile");
         }
     }
-    
+
     public IterationStatement(Expression expression, Statement statement) {
         this.expression = expression;
         this.statement = statement;
     }
-    
+
     public IterationStatement() {
         this(null, null);
     }
