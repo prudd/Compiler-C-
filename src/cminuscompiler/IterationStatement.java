@@ -52,8 +52,8 @@ public class IterationStatement extends Statement {
         currentBlock.appendOper(branchOp);
         
         //append whileBlock to current
-        currentBlock.setNextBlock(whileBlock);
-        whileBlock.setPrevBlock(currentBlock);
+        func.appendToCurrentBlock(whileBlock);
+
 
         //set current block to whileBlock
         func.setCurrBlock(whileBlock);
@@ -70,8 +70,8 @@ public class IterationStatement extends Statement {
         currentBlock.appendOper(branchOp2);
         
         //append postBlock
-        currentBlock.setNextBlock(postBlock);
-        whileBlock.setPrevBlock(currentBlock);
+        func.appendToCurrentBlock(postBlock);
+
 
         //set current block to postBlock
         func.setCurrBlock(postBlock);

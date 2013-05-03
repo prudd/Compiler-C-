@@ -44,8 +44,8 @@ public class CallExpression extends Expression {
         BasicBlock currentBlock = func.getCurrBlock();
         BasicBlock newBlock = new BasicBlock(func);
 
-        currentBlock.setNextBlock(newBlock);
-        newBlock.setPrevBlock(currentBlock);
+        func.appendToCurrentBlock(newBlock);
+
 
         func.setCurrBlock(newBlock);
         currentBlock = newBlock;

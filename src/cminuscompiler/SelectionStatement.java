@@ -61,8 +61,7 @@ public class SelectionStatement extends Statement {
         currentBlock.appendOper(branchOp);
         
         //append then
-        currentBlock.setNextBlock(thenBlock);
-        thenBlock.setPrevBlock(currentBlock);
+        func.appendToCurrentBlock(thenBlock);
         
         //set current block to thenBlock
         func.setCurrBlock(thenBlock);
@@ -72,8 +71,7 @@ public class SelectionStatement extends Statement {
         statement.genCode(func);
         
         //append post
-        currentBlock.setNextBlock(postBlock);
-        postBlock.setPrevBlock(currentBlock);
+        func.appendToCurrentBlock(postBlock);
         
         //set current block to elseBlock
         func.setCurrBlock(elseBlock);
