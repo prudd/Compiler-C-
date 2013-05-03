@@ -21,7 +21,7 @@ public class ExpressionStatement extends Statement {
     
     @Override
     public void genCode(Function func){
-        expression.genCode(null);
+        expression.genCode(func);
     }
     
     @Override
