@@ -69,7 +69,7 @@ public class FunctionDeclaration extends Declaration {
         for(Parameter p : parameters){
             p.genCode(func);
         }
-        func.appendToCurrentBlock(func.getFirstUnconnectedBlock());
+        func.appendBlock(func.getFirstUnconnectedBlock());
         return func;
     }
 
