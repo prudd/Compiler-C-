@@ -36,7 +36,16 @@ public class CallExpression extends Expression {
     
     @Override
     public void genCode(Function func){
+        // Start a new basic block to try and help with register allocation
+        // later.
         BasicBlock currentBlock = func.getCurrBlock();
+        BasicBlock newBlock = new BasicBlock(func);
+        
+        currentBlock.setNextBlock(newBlock);
+        newBlock.setPrevBlock(currentBlock);
+        
+        func.setCurrBlock(newBlock);
+        currentBlock = newBlock;
         
         // Call genCode on args in reverse order:
         // Add Operation to move each param to register:
@@ -52,15 +61,6 @@ public class CallExpression extends Expression {
         // Add call operation:
         Operation callOp = new Operation(Operation.OperationType.CALL, currentBlock);
         currentBlock.appendOper(callOp);
-        
-        // Start a new basic block to try and help with register allocation
-        // later.
-        BasicBlock newBlock = new BasicBlock(func);
-        
-        currentBlock.setNextBlock(newBlock);
-        newBlock.setPrevBlock(currentBlock);
-        
-        func.setCurrBlock(newBlock);
     }
     
     @Override
