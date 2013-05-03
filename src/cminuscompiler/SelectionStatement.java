@@ -85,8 +85,10 @@ public class SelectionStatement extends Statement {
             elseStatement.genCode(func);
 
             //create jump to post
-            Operation jumpOp = new Operation(Operation.OperationType.JMP, currentBlock);
-            jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+            Operation jumpOp = new Operation(Operation.OperationType.JMP,
+                                        currentBlock);
+            jumpOp.setSrcOperand(0, new Operand(Operand.OperandType.BLOCK,
+                                        postBlock.getBlockNum()));
             currentBlock.appendOper(jumpOp);
 
             //Append elseBlock to unconnectedBlock

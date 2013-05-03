@@ -32,6 +32,7 @@ class VarExpression extends Expression {
 
     @Override
     public void genCode(Function func) {
+        // If variable is not in local symbol table, look in global
         if (func.getTable().get(id) != null) {
             tempReg = (Integer) (func.getTable().get(id));
         }

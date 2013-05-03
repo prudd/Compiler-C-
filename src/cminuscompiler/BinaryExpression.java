@@ -1,9 +1,7 @@
 package cminuscompiler;
 
-import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import lowlevel.BasicBlock;
 import lowlevel.Function;
 import lowlevel.Operand;
@@ -46,11 +44,11 @@ public class BinaryExpression extends Expression {
     @Override
     public void genCode(Function func) {
         BasicBlock currentBlock = func.getCurrBlock();
-        HashMap symbolTable = func.getTable();
         tempReg = func.getNewRegNum();
-        symbolTable.put(tempReg, tempReg);
+        func.getTable().put(tempReg, tempReg);
         leftExpression.genCode(func);
         rightExpression.genCode(func);
+        
         Operation.OperationType opType = null;
         if (operator.equals("<")) {
             opType = Operation.OperationType.LT;
@@ -74,9 +72,12 @@ public class BinaryExpression extends Expression {
             opType = Operation.OperationType.DIV_I;
         }
         Operation op = new Operation(opType, currentBlock);
-        op.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, tempReg));
-        op.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, leftExpression.getRegNum()));
-        op.setSrcOperand(1, new Operand(Operand.OperandType.REGISTER, rightExpression.getRegNum()));
+        op.setDestOperand(0, new Operand(Operand.OperandType.REGISTER,
+                                    tempReg));
+        op.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, 
+                                    leftExpression.getRegNum()));
+        op.setSrcOperand(1, new Operand(Operand.OperandType.REGISTER,
+                                    rightExpression.getRegNum()));
         currentBlock.appendOper(op);
     }
 

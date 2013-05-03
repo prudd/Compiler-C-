@@ -57,26 +57,33 @@ public class CallExpression extends Expression {
             int i = 0;
             Expression exp = intArgs.next();
             exp.genCode(func);
-            Operation passOp = new Operation(Operation.OperationType.PASS, currentBlock);
-            passOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, exp.getRegNum()));
-            passOp.addAttribute(new Attribute("PARAM_NUM", Integer.toString(i)));
+            Operation passOp = new Operation(Operation.OperationType.PASS,
+                                        currentBlock);
+            passOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER,
+                                        exp.getRegNum()));
+            passOp.addAttribute(new Attribute("PARAM_NUM",
+                                        Integer.toString(i)));
             currentBlock.appendOper(passOp);
             i++;
         }
 
         // Add call operation:
-        Operation callOp = new Operation(Operation.OperationType.CALL, currentBlock);
+        Operation callOp = new Operation(Operation.OperationType.CALL, 
+                                        currentBlock);
         callOp.setSrcOperand(0, new Operand(Operand.OperandType.STRING, id));
-        callOp.addAttribute(new Attribute("numParams", Integer.toString(args.size())));
+        callOp.addAttribute(new Attribute("numParams", 
+                                        Integer.toString(args.size())));
         currentBlock.appendOper(callOp);
         
         //Assign retReg to a new register
-        HashMap symbolTable = func.getTable();
         tempReg = func.getNewRegNum();
-        symbolTable.put(tempReg, tempReg);
-        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, currentBlock);
-        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.MACRO, "retReg"));
-        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, tempReg));
+        func.getTable().put(tempReg, tempReg);
+        Operation assignOp = new Operation(Operation.OperationType.ASSIGN,
+                                            currentBlock);
+        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.MACRO,
+                                            "retReg"));
+        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER,
+                                            tempReg));
         currentBlock.appendOper(assignOp);
     }
 

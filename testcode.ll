@@ -195,7 +195,7 @@
     (OPER 24 Mov [(r 17)]  [(i 1)])
     (OPER 25 Add_I [(r 16)]  [(r 5)(r 17)])
     (OPER 26 Mov [(r 5)]  [(r 16)])
-    (OPER 27 BEQ []  [(r 13)(i 1)(bb 7)])
+    (OPER 27 BEQ []  [(r 13)(i 1)(bb 6)])
   )
   (BB 7
     (OPER 28 Mov [(r 19)]  [(i 3)])
@@ -242,7 +242,7 @@
     (OPER 59 BNE []  [(r 32)(i 1)(bb 14)])
   )
   (BB 13
-    (OPER 68 BEQ []  [(r 32)(i 1)(bb 14)])
+    (OPER 68 BEQ []  [(r 32)(i 1)(bb 13)])
   )
   (BB 15
     (OPER 60 Mov [(r 35)]  [(i 48)])

@@ -61,15 +61,20 @@ public class FunctionDeclaration extends Declaration {
         Function func = new Function(type, id);
         func.createBlock0();
         func.setCurrBlock(func.getFirstBlock());
+        
+        // Block to hold function body
         BasicBlock newBlock = new BasicBlock(func);
         func.appendToCurrentBlock(newBlock);
         func.setCurrBlock(newBlock);
-        func.genReturnBlock();
+        
+        BasicBlock returnBlock = func.genReturnBlock();
         for (Parameter p : parameters) {
             p.genCode(func);
         }
         compoundStatement.genCode(func);
-        func.appendBlock(func.getReturnBlock());
+        func.appendBlock(returnBlock);
+        
+        // If there is an unconnected block, append to the end of list
         if (func.getFirstUnconnectedBlock() != null) {
             func.appendBlock(func.getFirstUnconnectedBlock());
         }

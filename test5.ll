@@ -43,7 +43,7 @@
     (OPER 23 Mov [(r 17)]  [(i 1)])
     (OPER 24 Add_I [(r 16)]  [(r 5)(r 17)])
     (OPER 25 Mov [(r 5)]  [(r 16)])
-    (OPER 26 BEQ []  [(r 13)(i 1)(bb 7)])
+    (OPER 26 BEQ []  [(r 13)(i 1)(bb 6)])
   )
   (BB 7
     (OPER 27 Mov [(r 19)]  [(i 3)])

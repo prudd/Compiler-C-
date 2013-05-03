@@ -45,10 +45,14 @@ public class IterationStatement extends Statement {
         expression.genCode(func);
 
         //branch to post
-        Operation branchOp = new Operation(Operation.OperationType.BNE, currentBlock);
-        branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
-        branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
-        branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+        Operation branchOp = new Operation(Operation.OperationType.BNE,
+                                        currentBlock);
+        branchOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER,
+                                        expression.getRegNum()));
+        branchOp.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER,
+                                        1));
+        branchOp.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK,
+                                        postBlock.getBlockNum()));
         currentBlock.appendOper(branchOp);
         
         //append whileBlock to current
@@ -63,10 +67,14 @@ public class IterationStatement extends Statement {
         statement.genCode(func);
 
         //reverse polarity branch to whileBlock
-        Operation branchOp2 = new Operation(Operation.OperationType.BEQ, currentBlock);
-        branchOp2.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
-        branchOp2.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER, 1));
-        branchOp2.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, postBlock.getBlockNum()));
+        Operation branchOp2 = new Operation(Operation.OperationType.BEQ,
+                                        currentBlock);
+        branchOp2.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER,
+                                        expression.getRegNum()));
+        branchOp2.setSrcOperand(1, new Operand(Operand.OperandType.INTEGER,
+                                        1));
+        branchOp2.setSrcOperand(2, new Operand(Operand.OperandType.BLOCK, 
+                                        whileBlock.getBlockNum()));
         currentBlock.appendOper(branchOp2);
         
         //append postBlock

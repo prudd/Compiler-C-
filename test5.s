@@ -22,31 +22,33 @@ main_bb1:
 	je	main_bb4
 main_bb3:
 	movl	$3, %EAX
-	movl	%EAX, %ECX
+	movl	%EAX, %ESI
 main_bb5:
 	movl	$0, %EAX
 	movl	%EAX, %R15D
 	movl	$1, %EAX
-	movl	%EAX, %ESI
+	movl	%EAX, %EDX
 	movl	$8, %EAX
-	cmpl	%EAX, %ESI
+	cmpl	%EAX, %EDX
 	jle	main_bb7
 main_bb6:
 	movl	%R15D, %EAX
-	addl	%ESI, %EAX
+	addl	%EDX, %EAX
 	movl	%EAX, %R15D
 	movl	$1, %EAX
-	addl	%EAX, %ESI
+	addl	%EAX, %EDX
+	cmpl	$1, %ECX
+	je	main_bb6
 main_bb7:
-	movl	$3, %ESI
+	movl	$3, %ECX
 	movl	$0, %EDX
 	movl	%R15D, %EAX
-	idivl	%ESI, %EAX
-	movl	$4, %ESI
-	imull	%ESI, %EAX
+	idivl	%ECX, %EAX
+	movl	$4, %EDX
+	imull	%EDX, %EAX
 	movl	%EAX, %R15D
 main_bb8:
-	movl	%ECX, %EDI
+	movl	%ESI, %EDI
 	call	addThem
 	movl	%retReg, %EAX
 main_bb9:
@@ -63,5 +65,5 @@ main_bb2:
 	ret
 main_bb4:
 	movl	$4, %EAX
-	movl	%EAX, %ECX
+	movl	%EAX, %ESI
 	jmp	main_bb5

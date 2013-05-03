@@ -29,13 +29,13 @@
   (BB 16
     (OPER 45 EQ [(r 24)]  [(r 1)(r 2)])
     (OPER 46 BNE []  [(r 24)(i 1)(bb 19)])
-    (OPER 51 BEQ []  [(r 23)(i 1)(bb 17)])
+    (OPER 51 BEQ []  [(r 23)(i 1)(bb 16)])
   )
   (BB 18
     (OPER 47 Mov [(r 26)]  [(i 1)])
     (OPER 48 Sub_I [(r 25)]  [(r 2)(r 26)])
     (OPER 49 Mov [(r 1)]  [(r 25)])
-    (OPER 50 BEQ []  [(r 24)(i 1)(bb 19)])
+    (OPER 50 BEQ []  [(r 24)(i 1)(bb 18)])
   )
   (BB 19
   )
@@ -61,7 +61,7 @@
     (OPER 34 Mov [(r 21)]  [(i 2)])
     (OPER 35 Add_I [(r 20)]  [(r 2)(r 21)])
     (OPER 36 Mov [(r 2)]  [(r 20)])
-    (OPER 37 BEQ []  [(r 18)(i 1)(bb 12)])
+    (OPER 37 BEQ []  [(r 18)(i 1)(bb 11)])
   )
   (BB 12
   )
@@ -79,7 +79,7 @@
     (OPER 23 Mov [(r 14)]  [(i 2)])
     (OPER 24 EQ [(r 13)]  [(r 2)(r 14)])
     (OPER 25 BNE []  [(r 13)(i 1)(bb 9)])
-    (OPER 39 BEQ []  [(r 10)(i 1)(bb 7)])
+    (OPER 39 BEQ []  [(r 10)(i 1)(bb 6)])
   )
   (BB 8
     (OPER 26 Mov [(r 16)]  [(i 1)])

@@ -41,7 +41,8 @@ public class CMinusCompiler implements Compiler {
 
             fileName = filePrefix + ".ll";
             PrintWriter outFile =
-                    new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+                    new PrintWriter(new BufferedWriter(
+                    new FileWriter(fileName)));
             lowLevelCode.printLLCode(outFile);
             outFile.close();
 
@@ -52,7 +53,8 @@ public class CMinusCompiler implements Compiler {
 
             fileName = filePrefix + ".opti";
             outFile =
-                    new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+                    new PrintWriter(new BufferedWriter(
+                    new FileWriter(fileName)));
             lowLevelCode.printLLCode(outFile);
             outFile.close();
 
@@ -66,22 +68,13 @@ public class CMinusCompiler implements Compiler {
             }
             fileName = filePrefix + ".x86";
             outFile =
-                    new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+                    new PrintWriter(new BufferedWriter(
+                    new FileWriter(fileName)));
             lowLevelCode.printLLCode(outFile);
             outFile.close();
-
-            //    lowLevelCode.printLLCode(null);
-            // simply walks functions and finds in and out edges for each BasicBlock
+            
             ControlFlowAnalysis cf = new ControlFlowAnalysis(lowLevelCode);
             cf.performAnalysis();
-            //    cf.printAnalysis(null);
-
-            // performs DU analysis, annotating the function with the live range of
-            // the value defined by each oper (some merging of opers which define
-            // same virtual register is done)
-            //    DefUseAnalysis du = new DefUseAnalysis(lowLevelCode);
-            //    du.performAnalysis();
-            //    du.printAnalysis();
 
             LivenessAnalysis liveness = new LivenessAnalysis(lowLevelCode);
             liveness.performAnalysis();
@@ -89,15 +82,16 @@ public class CMinusCompiler implements Compiler {
 
             if (genX64Code) {
                 int numRegs = 15;
-                X64RegisterAllocator regAlloc = new X64RegisterAllocator(lowLevelCode,
-                        numRegs);
+                X64RegisterAllocator regAlloc =
+                        new X64RegisterAllocator(lowLevelCode, numRegs);
                 regAlloc.performAllocation();
 
                 lowLevelCode.printLLCode(null);
 
                 fileName = filePrefix + ".s";
                 outFile =
-                        new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+                        new PrintWriter(new BufferedWriter(
+                        new FileWriter(fileName)));
                 X64AssemblyGenerator assembler =
                         new X64AssemblyGenerator(lowLevelCode, outFile);
                 assembler.generateX64Assembly();
@@ -105,28 +99,29 @@ public class CMinusCompiler implements Compiler {
             }
             else {
                 int numRegs = 7;
-                X86RegisterAllocator regAlloc = new X86RegisterAllocator(lowLevelCode,
-                        numRegs);
+                X86RegisterAllocator regAlloc = new X86RegisterAllocator(
+                        lowLevelCode, numRegs);
                 regAlloc.performAllocation();
 
                 lowLevelCode.printLLCode(null);
 
                 fileName = filePrefix + ".s";
                 outFile =
-                        new PrintWriter(new BufferedWriter(new FileWriter(fileName)));
+                        new PrintWriter(new BufferedWriter(
+                        new FileWriter(fileName)));
                 X86AssemblyGenerator assembler =
                         new X86AssemblyGenerator(lowLevelCode, outFile);
                 assembler.generateAssembly();
                 outFile.close();
             }
 
-        } catch (IOException ioe) {
+        } 
+        catch (IOException ioe) {
         }
-
     }
 
     public static void main(String[] args) throws ParseException {
-        String filePrefix = "test5";
+        String filePrefix = "ComprehensiveTest";
         Compiler myCompiler = new CMinusCompiler();
         setGenX64Code(true);
         myCompiler.compile(filePrefix);

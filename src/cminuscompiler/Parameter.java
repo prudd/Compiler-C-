@@ -1,9 +1,7 @@
 package cminuscompiler;
 
-import compiler.CMinusCompiler;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import lowlevel.Data;
 import lowlevel.FuncParam;
 import lowlevel.Function;
@@ -38,7 +36,12 @@ public class Parameter {
             func.setFirstParam(new FuncParam(Data.TYPE_INT, id));
         }
         else{
-            func.getfirstParam().setNextParam(new FuncParam(Data.TYPE_INT, id));
+            FuncParam currentParam = func.getfirstParam();
+            // This ensures the new param is added to the end of list
+            while(currentParam.getNextParam() != null){
+                currentParam = currentParam.getNextParam();
+            }
+            currentParam.setNextParam(new FuncParam(Data.TYPE_INT, id));
         }
     }
 

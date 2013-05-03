@@ -35,9 +35,12 @@ public class AssignmentExpression extends Expression {
     public void genCode(Function func) {
         expression.genCode(func);
         variable.genCode(func);
-        Operation assignOp = new Operation(Operation.OperationType.ASSIGN, func.getCurrBlock());
-        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER, variable.getRegNum()));
-        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER, expression.getRegNum()));
+        Operation assignOp = new Operation(Operation.OperationType.ASSIGN,
+                            func.getCurrBlock());
+        assignOp.setDestOperand(0, new Operand(Operand.OperandType.REGISTER,
+                            variable.getRegNum()));
+        assignOp.setSrcOperand(0, new Operand(Operand.OperandType.REGISTER,
+                            expression.getRegNum()));
         func.getCurrBlock().appendOper(assignOp);
     }
 
@@ -81,7 +84,8 @@ public class AssignmentExpression extends Expression {
         }
     }
 
-    public AssignmentExpression(VarExpression variable, Expression expression) {
+    public AssignmentExpression(VarExpression variable, Expression expression)
+    {
         this.variable = variable;
         this.expression = expression;
     }

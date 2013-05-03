@@ -86,7 +86,8 @@ public class Program {
             }
             bw.close();
         } catch (IOException ex) {
-            System.err.print("Error opening FileWriter in Program printASTFile");
+            System.err.print("Error opening FileWriter in Program"
+                    + " printASTFile");
         }
     }
 }
