@@ -36,11 +36,15 @@ public class Program {
     }
     
     public CodeItem genCode(){
+        CodeItem firstItem = null;
         CodeItem previousItem = null;
         for(Declaration d : declarationList){
             CodeItem currentItem = d.genCode();
             if(previousItem != null){
                 previousItem.setNextItem(currentItem);
+            }
+            else{
+                firstItem = currentItem;
             }
             previousItem = currentItem;
         }
