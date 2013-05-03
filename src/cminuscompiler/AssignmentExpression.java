@@ -34,6 +34,11 @@ public class AssignmentExpression extends Expression {
     }
     
     @Override
+    public int getRegNum() {
+        return this.tempReg;
+    }
+    
+    @Override
     public void print() {
         this.variable.print();
         System.out.print(" = ");

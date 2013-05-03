@@ -34,6 +34,11 @@ class VarExpression extends Expression {
     }
     
     @Override
+    public int getRegNum() {
+        return this.tempReg;
+    }
+    
+    @Override
     public void print() {
         System.out.print(this.id);
         

@@ -35,6 +35,11 @@ public class CallExpression extends Expression {
     public void genCode(BasicBlock currentBlock){
         
     }
+    
+    @Override
+    public int getRegNum() {
+        return this.tempReg;
+    }
 
     @Override
     public void print() {
