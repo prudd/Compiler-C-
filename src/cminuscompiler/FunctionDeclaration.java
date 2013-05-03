@@ -14,6 +14,7 @@ import lowlevel.Function;
  * @author Paul Marshall
  */
 public class FunctionDeclaration extends Declaration {
+
     private int type;
     private String id;
     private LinkedList<Parameter> parameters = new LinkedList<>();
@@ -66,10 +67,12 @@ public class FunctionDeclaration extends Declaration {
         func.setCurrBlock(newBlock);
         func.genReturnBlock();
         compoundStatement.genCode(func);
-        for(Parameter p : parameters){
+        for (Parameter p : parameters) {
             p.genCode(func);
         }
-        func.appendBlock(func.getFirstUnconnectedBlock());
+        if (func.getFirstUnconnectedBlock() != null) {
+            func.appendBlock(func.getFirstUnconnectedBlock());
+        }
         return func;
     }
 
