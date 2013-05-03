@@ -17,7 +17,6 @@ import lowlevel.Function;
  * @author Paul Marshall
  */
 public class FunctionDeclaration extends Declaration {
-
     private int type;
     private String id;
     private LinkedList<Parameter> parameters = new LinkedList<>();

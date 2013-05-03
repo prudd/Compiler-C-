@@ -36,14 +36,15 @@ public class Program {
     }
     
     public CodeItem genCode(){
-        CodeItem currentItem = null;
-        for(int i = 0; i < declarationList.size(); i++){
-            currentItem = declarationList.get(i).genCode();
-            if(i > 0){
-                declarationList.get(i - 1).genCode().setNextItem(currentItem);
+        CodeItem previousItem = null;
+        for(Declaration d : declarationList){
+            CodeItem currentItem = d.genCode();
+            if(previousItem != null){
+                previousItem.setNextItem(currentItem);
             }
+            previousItem = currentItem;
         }
-        return currentItem;
+        return previousItem;
     }
     
     public void printFile(String source, int level) {
