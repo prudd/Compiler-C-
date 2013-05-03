@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import lowlevel.BasicBlock;
 import lowlevel.CodeItem;
 import lowlevel.Data;
+import compiler.CMinusCompiler;
 
 /**
  *
@@ -42,7 +43,10 @@ public class CompoundStatement extends Statement {
     
     @Override
     public CodeItem genCode(BasicBlock currentBlock){
-        return null;
+        for(Declaration d : declarations){
+            CMinusCompiler.globalHash.put(((VariableDeclaration) d).getId(), CMinusCompiler.globalHash.size());
+        }
+        return new Data();
     }
     
     @Override
